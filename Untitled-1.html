@@ -94,27 +94,35 @@
         }
 
         .event-details {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: slideInUp 1s ease-out 0.6s both;
+            background: none;
+            backdrop-filter: none;
+            border-radius: 0;
+            padding: 0;
+            margin: 0 auto;
+            border: none;
+            animation: none;
+            max-width: 1200px;
+            width: 100%;
         }
 
         .event-details h2 {
             color: white;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+            font-size: 3.2rem;
+            margin-bottom: 4rem;
+            text-align: center;
         }
 
         .event-info {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
             color: white;
-            font-size: 1.1rem;
+            font-size: 1.8rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            line-height: 1.6;
+            justify-items: start;
+            align-items: start;
         }
 
         .event-info div {
@@ -125,9 +133,42 @@
         /* PC表示での調整 */
         @media (min-width: 769px) {
             .event-info {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 4rem;
+                font-size: 1.8rem;
             }
+        }
+
+        /* Reset event-info styling to white text */
+        .event-info div strong {
+            color: white !important;
+            font-size: inherit !important;
+            font-weight: normal !important;
+            display: inline !important;
+            margin-bottom: 0 !important;
+            text-shadow: none !important;
+        }
+
+        .event-info div {
+            background: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            border: none !important;
+            text-align: left !important;
+            transition: none !important;
+        }
+
+        .event-info div:hover {
+            background: none !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .event-info div svg {
+            margin-bottom: 1rem !important;
+            margin-right: 0 !important;
+            vertical-align: middle;
+            opacity: 0.9;
         }
 
         .scroll-indicator {
@@ -226,12 +267,42 @@
         }
 
         .hero-subtitle-custom {
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.8rem;
+            color: white;
             margin-bottom: 2rem;
-            font-weight: 300;
+            font-weight: 500;
             animation: slideInUp 1s ease-out 0.9s both;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .keyword-water {
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(79, 195, 247, 0.8), 2px 2px 8px rgba(0, 0, 0, 0.6);
+            display: inline-block;
+        }
+
+        .keyword-forest {
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(102, 187, 106, 0.8), 2px 2px 8px rgba(0, 0, 0, 0.6);
+            display: inline-block;
+        }
+
+        .keyword-future {
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(255, 213, 79, 0.8), 2px 2px 8px rgba(0, 0, 0, 0.6);
+            display: inline-block;
+        }
+
+        .keyword-green-infra {
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(129, 199, 132, 0.8), 2px 2px 8px rgba(0, 0, 0, 0.6);
+            display: inline-block;
         }
 
         .nav-links {
@@ -1056,8 +1127,33 @@
                 font-size: 1.1rem;
             }
 
+            .hero-subtitle-custom {
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.3;
+            }
+
+            .keyword-water,
+            .keyword-forest,
+            .keyword-future,
+            .keyword-green-infra {
+                font-weight: 700;
+            }
+
+            .event-details {
+                padding: 0;
+                margin: 0;
+            }
+
+            .event-details h2 {
+                font-size: 2.4rem;
+                margin-bottom: 2.5rem;
+            }
+
             .event-info {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+                font-size: 1.4rem;
             }
 
             .purpose-content {
@@ -1141,6 +1237,15 @@
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .event-info div strong {
+            font-size: 1.2rem;
+        }
+
+        .purpose-content {
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
         }
     </style>
 </head>
@@ -1313,54 +1418,58 @@
                 </svg>
             </div>
 
-            <p class="hero-subtitle-custom">～グリーンインフラでつなぐ「水」と「森」と「未来」～</p>
-
-            <div class="event-details">
-                <div class="event-info">
-                    <div>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
-                            style="margin-right: 8px; vertical-align: middle;">
-                            <path
-                                d="M19,3H18V1H16V3H8V1H6V3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z" />
-                        </svg>
-                        <strong>シンポジウム本会議</strong><br>
-                        2025年9月20日（土）一般参加
-                    </div>
-                    <div>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
-                            style="margin-right: 8px; vertical-align: middle;">
-                            <path
-                                d="M19,3H18V1H16V3H8V1H6V3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z" />
-                        </svg>
-                        <strong>フィールドトリップ</strong><br>
-                        2025年9月21日（日）限定参加
-                    </div>
-                    <div>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
-                            style="margin-right: 8px; vertical-align: middle;">
-                            <path
-                                d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
-                        </svg>
-                        <strong>会場</strong><br>
-                        北海道・ルスツリゾート
-                    </div>
-                    <div>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
-                            style="margin-right: 8px; vertical-align: middle;">
-                            <path
-                                d="M12,7V3H2V21H22V7H12M6,19H4V17H6V19M6,15H4V13H6V15M6,11H4V9H6V11M6,7H4V5H6V7M10,19H8V17H10V19M10,15H8V13H10V15M10,11H8V9H10V11M10,7H8V5H10V7M20,19H12V17H20V19M20,15H12V13H20V15M20,11H12V9H20V11Z" />
-                        </svg>
-                        <strong>参加費</strong><br>
-                        無料（事前登録制）
-                    </div>
-                </div>
-            </div>
+            <p class="hero-subtitle-custom">～<span class="keyword-green-infra">グリーンインフラ</span>でつなぐ「<span class="keyword-water">水</span>」と「<span class="keyword-forest">森</span>」と「<span class="keyword-future">未来</span>」～</p>
         </div>
 
         <div class="scroll-indicator">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
             </svg>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section style="background: linear-gradient(135deg, rgba(0, 123, 191, 0.95), rgba(0, 181, 204, 0.9)); padding: 6rem 2rem; margin: 0;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <h2 style="color: white; font-size: 3.2rem; margin-bottom: 4rem; text-align: center; text-shadow: 2px 2px 8px rgba(0,0,0,0.6);">イベント詳細</h2>
+            <div class="event-info" style="text-align: left;">
+                <div>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"
+                        style="margin-right: 8px; vertical-align: middle;">
+                        <path
+                            d="M19,3H18V1H16V3H8V1H6V3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z" />
+                    </svg>
+                    <strong>シンポジウム本会議</strong><br>
+                    2025年9月20日（土）一般参加
+                </div>
+                <div>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"
+                        style="margin-right: 8px; vertical-align: middle;">
+                        <path
+                            d="M19,3H18V1H16V3H8V1H6V3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z" />
+                    </svg>
+                    <strong>フィールドトリップ</strong><br>
+                    2025年9月21日（日）限定参加
+                </div>
+                <div>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"
+                        style="margin-right: 8px; vertical-align: middle;">
+                        <path
+                            d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                    </svg>
+                    <strong>会場</strong><br>
+                    北海道・ルスツリゾート
+                </div>
+                <div>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"
+                        style="margin-right: 8px; vertical-align: middle;">
+                        <path
+                            d="M12,7V3H2V21H22V7H12M6,19H4V17H6V19M6,15H4V13H6V15M6,11H4V9H6V11M6,7H4V5H6V7M10,19H8V17H10V19M10,15H8V13H10V15M10,11H8V9H10V11M10,7H8V5H10V7M20,19H12V17H20V19M20,15H12V13H20V15M20,11H12V9H20V11Z" />
+                    </svg>
+                    <strong>参加費</strong><br>
+                    無料（事前登録制）
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1818,7 +1927,7 @@
                 <div class="keyword-badges">
                     <div class="badge badge-blue">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12,15C7.58,15 4,16.79 4,19V21H20V19C20,16.79 16.42,15 12,15M8,9A4,4 0 0,0 12,13A4,4 0 0,0 16,9"/>
+                            <path d="M12,15C7.58,15 4,16.79 4,19V21H20V19C20,16.79 16.42,15 12,15M8,9A4,4 0 0,0 12,13A4,4 0 0,0 16,9M11.5,2C11.2,2 11,2.2 11,2.5V5.5C11,5.8 11.2,6 11.5,6C11.8,6 12,5.8 12,5.5V2.5C12,2.2 11.8,2 11.5,2Z" />
                         </svg>
                         <span>地域連携</span>
                     </div>
