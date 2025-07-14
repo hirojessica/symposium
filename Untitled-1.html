@@ -934,6 +934,112 @@
                 min-width: 200px;
                 justify-content: center;
             }
+
+            /* Mobile schedule improvements */
+            .schedule-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+                padding: 1rem 0;
+            }
+
+            .schedule-time {
+                min-width: auto;
+                width: auto;
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .schedule-content {
+                padding-left: 0;
+                width: 100%;
+            }
+
+            .schedule-title {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+
+            .schedule-content div {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            /* Mobile speakers improvements */
+            .speakers-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .speaker-card {
+                padding: 1.5rem;
+            }
+
+            .speaker-avatar {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 0.8rem;
+            }
+
+            .speaker-name {
+                font-size: 1.2rem;
+            }
+
+            .speaker-title {
+                font-size: 0.85rem;
+            }
+
+            .speaker-description {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            /* Mobile participation improvements */
+            .participation-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .participation-card {
+                padding: 1.5rem;
+            }
+
+            /* Mobile CTA button improvements */
+            .hero-cta {
+                margin-top: 2rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            /* Mobile event info improvements */
+            .event-info {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                font-size: 1.2rem;
+            }
+
+            .event-info div {
+                text-align: center;
+            }
+
+            /* Mobile purpose section improvements */
+            .purpose-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .enhanced-topic-card {
+                padding: 1.5rem;
+            }
+
+            .card-icon-wrapper {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 1rem;
+            }
         }
 
         /* Speakers Section */
@@ -990,6 +1096,23 @@
             position: relative;
             box-shadow: 0 6px 20px rgba(14, 198, 126, 0.25);
             transition: all 0.3s ease;
+        }
+
+        .speaker-avatar.kamori {
+            background: white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* CTA Button Hover Effects */
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(14, 198, 126, 0.4);
+            background: linear-gradient(135deg, #10B981, #059669);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(14, 198, 126, 0.3);
         }
 
         .speaker-avatar:hover {
@@ -1073,10 +1196,12 @@
         }
 
         .schedule-time {
-            min-width: 100px;
+            min-width: 140px;
+            width: 140px;
             font-weight: bold;
             color: #0EC67E;
             font-size: 1.1rem;
+            flex-shrink: 0;
         }
 
         .schedule-content {
@@ -1505,6 +1630,28 @@
             </div>
 
             <p class="hero-subtitle-custom">～<span class="keyword-green-infra">グリーンインフラ</span>でつなぐ「<span class="keyword-water">水</span>」と「<span class="keyword-forest">森</span>」と「<span class="keyword-future">未来</span>」～</p>
+            
+            <div class="hero-cta" style="margin-top: 3rem; animation: slideInUp 1s ease-out 1.2s both;">
+                <a href="#" class="cta-button" style="
+                    display: inline-block;
+                    background: linear-gradient(135deg, #0EC67E, #10B981);
+                    color: white;
+                    padding: 1.2rem 3rem;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    box-shadow: 0 8px 25px rgba(14, 198, 126, 0.3);
+                    transition: all 0.3s ease;
+                    border: 2px solid rgba(255, 255, 255, 0.2);
+                    backdrop-filter: blur(10px);
+                ">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px; vertical-align: middle;">
+                        <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2Z"/>
+                    </svg>
+                    お申し込みはこちら
+                </a>
+            </div>
         </div>
 
         <div class="scroll-indicator">
@@ -1818,7 +1965,9 @@
 
             <div class="speaker-card">
                 <div class="speaker-avatar">
-                    <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=150&h=150&fit=crop&crop=face&auto=format" alt="国土交通省関係者" class="speaker-image">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
                 </div>
                 <div class="speaker-name">国土交通省関係者</div>
                 <div class="speaker-title">水管理・国土保全局（予定）</div>
@@ -1830,7 +1979,9 @@
 
             <div class="speaker-card">
                 <div class="speaker-avatar">
-                    <img src="https://images.unsplash.com/photo-1521119989659-a83eee488004?w=150&h=150&fit=crop&crop=face&auto=format" alt="自治体関係者" class="speaker-image">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
                 </div>
                 <div class="speaker-name">自治体関係者</div>
                 <div class="speaker-title">留寿都村・京極町・喜茂別町</div>
@@ -1842,13 +1993,51 @@
 
             <div class="speaker-card">
                 <div class="speaker-avatar">
-                    <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=150&h=150&fit=crop&crop=face&auto=format" alt="ルスツリゾート" class="speaker-image">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
                 </div>
                 <div class="speaker-name">ルスツリゾート</div>
                 <div class="speaker-title">調査チーム・関係者</div>
                 <div class="speaker-description">
                     <strong>現地調査の実践報告</strong><br>
                     水資源・森林涵養調査の実施内容と成果発表
+                </div>
+            </div>
+
+            <div class="speaker-card">
+                <div class="speaker-avatar kamori">
+                    <img src="./img/kamori.png" alt="加森久丈" class="speaker-image">
+                </div>
+                <div class="speaker-name">加森久丈</div>
+                <div class="speaker-title">加森観光 代表取締役</div>
+                <div class="speaker-description">
+                    <strong>北海道観光業界のリーダー</strong><br>
+                    地域観光と自然保全の両立を目指す実践者
+                </div>
+            </div>
+
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <img src="./img/hirato.png" alt="平戸慎太郎" class="speaker-image">
+                </div>
+                <div class="speaker-name">平戸慎太郎</div>
+                <div class="speaker-title">RRT Co-Founder, CFO</div>
+                <div class="speaker-description">
+                    <strong>テクノロジーと観光の融合</strong><br>
+                    デジタル技術を活用したリゾート運営の革新
+                </div>
+            </div>
+
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <img src="./img/asahi.jpg" alt="岩永朝陽" class="speaker-image">
+                </div>
+                <div class="speaker-name">岩永 朝陽</div>
+                <div class="speaker-title">株式会社amenowa 代表取締役</div>
+                <div class="speaker-description">
+                    <strong>水循環シンポジウム主催者</strong><br>
+                    水資源と地域社会の持続可能な発展を推進
                 </div>
             </div>
         </div>
@@ -1871,16 +2060,36 @@
                 <div class="schedule-item">
                     <div class="schedule-time">基調講演</div>
                     <div class="schedule-content">
-                        <div class="schedule-title">「グリーンインフラと地域循環の未来」</div>
+                        <div class="schedule-title">TBD</div>
                         <div>島谷幸宏 教授（熊本県立大学 特別教授／九州大学 名誉教授）</div>
+                        <div style="margin-top: 1rem;">
+                            <div class="schedule-title">「未来のリゾートがつくる水と自然との共生」</div>
+                            <div>加森観光株式会社 代表取締役社長 加森 久丈</div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="schedule-item">
                     <div class="schedule-time">調査報告</div>
                     <div class="schedule-content">
-                        <div class="schedule-title">ルスツリゾートにおける水資源・森林涵養調査</div>
-                        <div>実施内容と成果発表</div>
+                        <div class="schedule-title">「北海道・ルスツの地下水盆構造と水資源保全」</div>
+                        <div>第一工科大学 工学部 教授 髙嶋 洋</div>
+                        <div style="margin-top: 1rem;">
+                            <div class="schedule-title">「森林と水の涵養を支えるリーキーダムの可能性」</div>
+                            <div>東京大学大学院農学生命科学研究科 教授 蔵治 光一郎</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">2025年取組報告</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">2025年水循環の取組発表</div>
+                        <div>ルスツリゾート</div>
+                        <div style="margin-top: 1rem;">
+                            <div class="schedule-title">「IOTを活用したリアルタイム水モニタリングの導入と展望」</div>
+                            <div>株式会社amenowa 代表取締役 岩永 朝陽</div>
+                        </div>
                     </div>
                 </div>
 
@@ -2117,7 +2326,7 @@
                         d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
                 </svg>
                 <h3 style="color: #0EC67E; margin-bottom: 1rem; font-size: 1.3rem;">お問い合わせ・事務局</h3>
-                <p style="color: #555; line-height: 1.6;">第2回 水循環シンポジウム事務局（Amenowa内）</p>
+                <p style="color: #555; line-height: 1.6;">第2回 水循環シンポジウム事務局（amenowa内）</p>
                 <a href="mailto:info@amenowa.jp" style="color: #0EC67E; text-decoration: none;">info@amenowa.jp</a><br>
                 <span style="opacity: 0.8; color: #555;">Tel：03-xxxx-xxxx（平日10:00〜17:00）</span>
             </div>
