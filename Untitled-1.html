@@ -1585,6 +1585,116 @@
         .mobile-topic-list {
             display: none;
         }
+
+        /* 主催・共催・後援情報を常に縦並びに */
+        .organization-info {
+            display: block !important;
+        }
+        
+        .organization-info > div {
+            display: block !important;
+            width: 100% !important;
+            float: none !important;
+            clear: both !important;
+        }
+
+        /* ネットワーキングセッションのセンタリング強化 */
+        .networking-session {
+            margin: 0 auto !important;
+            width: 100% !important;
+            text-align: center !important;
+            display: block !important;
+            box-sizing: border-box !important;
+        }
+        
+        .networking-content {
+            margin-left: auto !important;
+            margin-right: auto !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            text-align: center !important;
+        }
+
+        /* レスポンシブデザイン - スマートフォン対応 */
+        @media screen and (max-width: 768px) {
+            /* 全体のフォントサイズ調整 */
+            .hero h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem !important;
+            }
+            
+            .event-title {
+                font-size: 2.5rem !important;
+            }
+            
+            /* 主催・共催・後援情報の調整 */
+            .organization-info {
+                padding: 0 15px !important;
+                font-size: 0.95rem !important;
+                line-height: 1.6 !important;
+                max-width: 100% !important;
+            }
+            
+            .organization-info div {
+                margin-bottom: 1rem !important;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+                white-space: normal;
+            }
+            
+            .organization-info strong {
+                font-size: 1rem !important;
+                display: inline-block;
+                margin-right: 0.3rem;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            /* より小さな画面での調整 */
+            .hero h1 {
+                font-size: 2rem !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem !important;
+            }
+            
+            .organization-info {
+                padding: 0 10px !important;
+                font-size: 0.85rem !important;
+                line-height: 1.4 !important;
+                max-width: 100% !important;
+            }
+            
+            .organization-info div {
+                margin-bottom: 0.8rem !important;
+            }
+            
+            .organization-info strong {
+                font-size: 0.9rem !important;
+                display: block !important;
+                margin-bottom: 0.2rem !important;
+                margin-right: 0 !important;
+            }
+            
+            /* ネットワーキングセッションのレスポンシブ */
+            .networking-content {
+                padding: 2rem 1.5rem !important;
+            }
+            
+            .networking-details-box {
+                padding: 1.5rem !important;
+            }
+            
+            .networking-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+        }
     </style>
 </head>
 
@@ -1658,14 +1768,25 @@
             </div>
             
             <!-- 主催・共催・後援情報 -->
-            <div style="margin-top: 3rem; text-align: center; color: white; font-size: 1.1rem; line-height: 1.8; animation: slideInUp 1s ease-out 1.5s both;">
-                <div style="margin-bottom: 0.8rem;">
+            <div class="event-info organization-info" style="
+                margin: 3rem auto 0 auto; 
+                text-align: center; 
+                color: white; 
+                font-size: 1.1rem; 
+                line-height: 1.8; 
+                animation: slideInUp 1s ease-out 1.5s both;
+                max-width: 900px;
+                padding: 0 20px;
+                box-sizing: border-box;
+                display: block;
+            ">
+                <div style="margin-bottom: 0.8rem; display: block; width: 100%;">
                     <strong>主催：</strong>加森観光株式会社
                 </div>
-                <div style="margin-bottom: 0.8rem;">
+                <div style="margin-bottom: 0.8rem; display: block; width: 100%;">
                     <strong>共催：</strong>留寿都村、NPO法人日本地質汚染審査機構、株式会社amenowa、株式会社RRT
                 </div>
-                <div>
+                <div style="display: block; width: 100%;">
                     <strong>後援：</strong>留寿都村
                 </div>
             </div>
@@ -1699,7 +1820,7 @@
                         <line x1="15.8" y1="15.8" x2="21" y2="21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
                     </svg>
                     <strong>フィールドトリップ</strong><br>
-                    2025年9月21日（日）限定参加
+                    2025年9月21日（日）先着30名
                 </div>
                 <div>
                     <!-- 地図ピンアイコン（会場） -->
@@ -2177,58 +2298,156 @@
                         <path
                             d="M19,3H18V1H16V3H8V1H6V3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z" />
                     </svg>
-                    9月20日（土）シンポジウム本会議 - 一般参加
+                    9月20日（土）シンポジウム本会議
                 </h3>
 
                 <div class="schedule-item">
-                    <div class="schedule-time">基調講演</div>
+                    <div class="schedule-time">09:00</div>
                     <div class="schedule-content">
-                        <div class="schedule-title">TBD</div>
-                        <div>島谷幸宏 教授（熊本県立大学 特別教授／九州大学 名誉教授）</div>
-                        <div style="margin-top: 1rem;">
-                            <div class="schedule-title">「未来のリゾートがつくる水と自然との共生」</div>
-                            <div>加森観光株式会社 代表取締役社長 加森 久丈</div>
-                        </div>
+                        <div class="schedule-title">新千歳空港 到着</div>
+                        <div>各地より参加者到着</div>
                     </div>
                 </div>
 
                 <div class="schedule-item">
-                    <div class="schedule-time">調査報告</div>
+                    <div class="schedule-time">10:00</div>
                     <div class="schedule-content">
-                        <div class="schedule-title">「北海道・ルスツの地下水盆構造と水資源保全」</div>
-                        <div>第一工科大学 工学部 教授 髙嶋 洋</div>
-                        <div style="margin-top: 1rem;">
-                            <div class="schedule-title">「森林と水の涵養を支えるリーキーダムの可能性」</div>
-                            <div>東京大学大学院農学生命科学研究科 教授 蔵治 光一郎</div>
-                        </div>
+                        <div class="schedule-title">ビッグランズ号2201便 搭乗</div>
+                        <div>新千歳空港 → ルスツリゾート</div>
                     </div>
                 </div>
 
                 <div class="schedule-item">
-                    <div class="schedule-time">2025年取組報告</div>
+                    <div class="schedule-time">12:00</div>
                     <div class="schedule-content">
-                        <div class="schedule-title">2025年水循環の取組発表</div>
-                        <div>ルスツリゾート</div>
-                        <div style="margin-top: 1rem;">
-                            <div class="schedule-title">「IOTを活用したリアルタイム水モニタリングの導入と展望」</div>
-                            <div>株式会社amenowa 代表取締役 岩永 朝陽</div>
-                        </div>
+                        <div class="schedule-title">ルスツリゾート到着・ホテルチェックイン</div>
+                        <div>昼食・休憩など</div>
                     </div>
                 </div>
 
                 <div class="schedule-item">
-                    <div class="schedule-time">パネル</div>
+                    <div class="schedule-time">13:30</div>
                     <div class="schedule-content">
-                        <div class="schedule-title">企業・行政・地域が連携する「循環型社会の実装と課題」</div>
-                        <div>パネルディスカッション形式での議論</div>
+                        <div class="schedule-title">会場開場・受付開始</div>
+                        <div>会場：ルスツリゾート内会議室</div>
                     </div>
                 </div>
 
                 <div class="schedule-item">
-                    <div class="schedule-time">交流</div>
+                    <div class="schedule-time">13:45</div>
                     <div class="schedule-content">
-                        <div class="schedule-title">ネットワーキングセッション</div>
+                        <div class="schedule-title">開会挨拶・趣旨説明（仮）</div>
+                        <div>主催者：加森 久丈 氏（加森観光株式会社 代表取締役社長）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：10分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">13:55</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">基調講演①「未来のリゾートがつくる水と自然との共生」（仮）</div>
+                        <div>島谷 幸宏 教授（熊本県立大学 特別教授／九州大学 名誉教授）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：40分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">14:35</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">基調講演②「自然と共生するリゾートの未来戦略」（仮）</div>
+                        <div>加森 久丈 氏（加森観光株式会社 代表取締役社長）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：15分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">14:50</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">特別講演「国の水資源政策と地域連携」（仮）</div>
+                        <div>国土交通省 水管理・国土保全局（予定）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：20分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">15:10</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">調査報告①「北海道・ルスツの地下水盆構造と水資源保全」（仮）</div>
+                        <div>髙嶋 洋 教授（第一工科大学 工学部）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：30分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">15:40</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">調査報告②「森林と水の涵養を支えるリーキーダムの可能性」（仮）</div>
+                        <div>蔵治 光一郎 教授（東京大学大学院 農学生命科学研究科）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：30分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">16:10</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">中休み</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：15分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">16:25</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">実践報告①「ルスツリゾートにおける水資源・森林涵養調査の実施と成果」（仮）</div>
+                        <div>ルスツリゾート調査チーム・関係者</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：20分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">16:45</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">実践報告②「IoTを活用したリアルタイム水モニタリングの導入と展望」（仮）</div>
+                        <div>岩永 朝陽 氏（株式会社amenowa 代表取締役）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：20分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">17:05</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">海外事例紹介「世界の水循環・保全事例から学ぶ」（仮）</div>
+                        <div>講師調整中</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：15分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">17:20</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">パネルディスカッション「循環型社会への挑戦」</div>
+                        <div>― 自治体における森林・水・エネルギーのローカルインフラ戦略と考え。</div>
+                        <div style="margin-top: 0.5rem;">モデレーター・登壇者調整中</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：45分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">18:10</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">クロージング・総括コメント（仮）</div>
+                        <div>主催者より</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：10分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">18:30〜20:00</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">懇親会・ネットワーキングセッション（仮）</div>
                         <div>地域連携・共同研究・事業共創の可能性を探る交流</div>
+                        <div style="margin-top: 0.5rem; color: #0EC67E; font-weight: bold;">参加費：11,000円（飲食費込み）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：90分</div>
                     </div>
                 </div>
             </div>
@@ -2240,7 +2459,7 @@
                         <path
                             d="M19,3H18V1H16V3H8V1H6V3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z" />
                     </svg>
-                    9月21日（日）フィールドトリップ（現地視察） - 限定参加
+                    9月21日（日）フィールドトリップ（現地視察） - 先着30名
                 </h3>
 
                 <div class="schedule-item">
@@ -2265,6 +2484,70 @@
                         <div class="schedule-title">地元関係者・企業・行政との意見交換</div>
                         <div>現地でのディスカッションセッション</div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ネットワーキングセッション概要 -->
+    <section class="section networking-session" style="background: linear-gradient(135deg, #f8fdfc 0%, #e8f7f4 100%); margin: 0; padding: 5rem 2rem;">
+        <div style="max-width: 1000px; width: 100%; margin: 0 auto; text-align: center; padding: 0; box-sizing: border-box;">
+            <h2 style="color: #0EC67E; font-size: 2.5rem; margin-bottom: 2rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.1);">
+                ネットワーキングセッション(懇親会) 概要
+            </h2>
+            <div style="font-size: 1.3rem; color: #10B981; margin-bottom: 3rem; font-weight: 600;">
+                地域・企業・専門家がつながる、未来共創のひととき
+            </div>
+            
+            <div class="networking-content reveal" style="background: white; border-radius: 20px; padding: 3rem; box-shadow: 0 15px 35px rgba(0,0,0,0.08); text-align: center; border: 1px solid rgba(14, 198, 126, 0.1); margin: 0 auto; width: 100%; max-width: 100%; display: block;">
+                <div style="margin-bottom: 2.5rem; text-align: left;">
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 1.5rem;">
+                        水循環シンポジウム終了後、参加者同士の交流を深める「ネットワーキングセッション」を開催いたします。自治体・企業・研究者・地域住民など、多様な立場の方々が一堂に会し、講演やディスカッションを通じて得た学びや気づきを共有しながら、今後の連携や共同プロジェクトの可能性を探ります。
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: #444;">
+                        会場では、北海道の食材を活かした軽食とお飲み物をご用意し、リラックスした雰囲気の中での対話をお楽しみいただけます。
+                    </p>
+                </div>
+
+                <!-- 開催概要ボックス -->
+                <div class="networking-details-box" style="background: linear-gradient(135deg, rgba(14, 198, 126, 0.05), rgba(16, 185, 129, 0.08)); border-radius: 15px; padding: 2rem; margin-bottom: 2rem; border-left: 5px solid #0EC67E;">
+                    <div class="networking-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; justify-items: center;">
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 0.8rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#0EC67E" style="margin-right: 8px;">
+                                    <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/>
+                                </svg>
+                                <strong style="color: #0EC67E; font-size: 1.1rem;">日時</strong>
+                            </div>
+                            <div style="color: #333; font-size: 1rem; line-height: 1.6;">2025年9月20日（土）<br>18:30〜20:00（予定）</div>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 0.8rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#0EC67E" style="margin-right: 8px;">
+                                    <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22S19,14.25 19,9A7,7 0 0,0 12,2Z"/>
+                                </svg>
+                                <strong style="color: #0EC67E; font-size: 1.1rem;">会場</strong>
+                            </div>
+                            <div style="color: #333; font-size: 1rem; line-height: 1.6;">ルスツリゾート内<br>特設ラウンジ</div>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 0.8rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#0EC67E" style="margin-right: 8px;">
+                                    <path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+                                </svg>
+                                <strong style="color: #0EC67E; font-size: 1.1rem;">参加費</strong>
+                            </div>
+                            <div style="color: #0EC67E; font-size: 1.2rem; font-weight: bold; line-height: 1.4;">11,000円（税込）<br><span style="font-size: 0.9rem;">飲食代含む（事前予約制）</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; padding: 1.5rem 0;">
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 0;">
+                        今後の地域循環型社会の実現に向け、出会いと対話から生まれる新たなつながりを築く機会として、ぜひご参加ください。
+                    </p>
                 </div>
             </div>
         </div>
