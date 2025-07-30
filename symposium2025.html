@@ -1,0 +1,2934 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水循環シンポジウム in 留寿都</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    <link rel="shortcut icon" href="./img/favicon.ico">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(14, 198, 126, 0.85), rgba(16, 185, 129, 0.75)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><path d="M0 0h1920v800c-320-80-640-160-960-120s-640 200-960 280V0z" fill="%23ffffff" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(14, 198, 126, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            33% {
+                transform: translateY(-20px) rotate(1deg);
+            }
+
+            66% {
+                transform: translateY(10px) rotate(-1deg);
+            }
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .event-details {
+            background: none;
+            backdrop-filter: none;
+            border-radius: 0;
+            padding: 0;
+            margin: 0 auto;
+            border: none;
+            animation: none;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .event-details h2 {
+            color: white;
+            font-size: 3.2rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .event-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            color: white;
+            font-size: 1.8rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            line-height: 1.6;
+            justify-items: start;
+            align-items: start;
+        }
+
+        .event-info div {
+            white-space: nowrap;
+            overflow: visible;
+        }
+
+        /* PC表示での調整 */
+        @media (min-width: 769px) {
+            .event-info {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 4rem;
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Reset event-info styling to white text */
+        .event-info div strong {
+            color: white !important;
+            font-size: inherit !important;
+            font-weight: normal !important;
+            display: inline !important;
+            margin-bottom: 0 !important;
+            text-shadow: none !important;
+        }
+
+        .event-info div {
+            background: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            border: none !important;
+            text-align: left !important;
+            transition: none !important;
+        }
+
+        .event-info div:hover {
+            background: none !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .event-info div svg {
+            margin-bottom: 1rem !important;
+            margin-right: 0 !important;
+            vertical-align: middle;
+            opacity: 0.9;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .navbar.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0EC67E;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .hero-logo {
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out 0.6s both;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 3.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-logo-col-img {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-logo-col-img img {
+            height: 300px;
+            width: auto;
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .hero-logo-col-img img { height: 180px; }
+        }
+        @media (max-width: 600px) {
+            .hero-logo-col-img img { height: 120px; }
+        }
+        .hero-logo-col-text {
+            flex: 1 1 0%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            text-align: left;
+            min-width: 0;
+        }
+        .hero-logo-title-ja {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            line-height: 1.1;
+            white-space: nowrap;
+            margin-bottom: 0.5rem;
+        }
+        .hero-logo-title-en {
+            font-size: 1.1rem;
+            color: #fff;
+            opacity: 0.95;
+            margin-bottom: 0.2rem;
+        }
+        .hero-logo-place {
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+            margin-bottom: 0.2rem;
+        }
+        .hero-logo-year {
+            font-size: 1.3rem;
+            color: #fff;
+            opacity: 0.95;
+            margin-bottom: 0.5rem;
+        }
+        .hero-logo-wave {
+            margin-top: 1.2rem;
+        }
+        @media (max-width: 900px) {
+            .hero-logo {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            .hero-logo-col-img img { height: 120px; }
+            .hero-logo-title-ja { font-size: 2.2rem; }
+            .hero-logo-place { font-size: 1.1rem; }
+            .hero-logo-year { font-size: 1rem; }
+            .hero-logo-col-text { align-items: center; text-align: center; }
+        }
+
+        .hero-subtitle-custom {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            animation: slideInUp 1s ease-out 0.9s both;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .keyword-water {
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(79, 195, 247, 0.6), 2px 2px 8px rgba(0, 0, 0, 0.4);
+            display: inline-block;
+        }
+
+        .keyword-forest {
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(102, 187, 106, 0.6), 2px 2px 8px rgba(0, 0, 0, 0.4);
+            display: inline-block;
+        }
+
+        .keyword-future {
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(255, 213, 79, 0.6), 2px 2px 8px rgba(0, 0, 0, 0.4);
+            display: inline-block;
+        }
+
+        .keyword-green-infra {
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(129, 199, 132, 0.6), 2px 2px 8px rgba(0, 0, 0, 0.4);
+            display: inline-block;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #0EC67E;
+        }
+
+        /* Sections */
+        .section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #0EC67E;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #0EC67E, #10B981);
+            border-radius: 2px;
+        }
+
+        /* Purpose Section */
+        .purpose {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            margin: 0;
+            padding: 3rem 1rem;
+        }
+
+        .purpose-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .purpose-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .purpose-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .purpose-header h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .purpose-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .topic-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #0EC67E;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .topic-card h3 {
+            color: #0EC67E;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        /* Enhanced Purpose Section Styles */
+        .purpose-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .subtitle-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .subtitle-wrapper h3 {
+            color: #0EC67E;
+            font-size: 1.5rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .subtitle-icon {
+            background: linear-gradient(135deg, #0EC67E, #10B981);
+            border-radius: 50%;
+            padding: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(14, 198, 126, 0.25);
+        }
+
+        .purpose-intro {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 247, 250, 0.95));
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 123, 191, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .purpose-intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0EC67E, #10B981, #059669);
+        }
+
+        .purpose-intro p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+
+        .purpose-intro p:last-child {
+            margin-bottom: 0;
+        }
+
+        .approach-list {
+            margin: 2.5rem 0;
+        }
+
+        .approach-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .approach-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            border-left-color: var(--item-color, #007bbf);
+        }
+
+        .approach-item:nth-child(1) { --item-color: #0EC67E; }
+        .approach-item:nth-child(2) { --item-color: #10B981; }
+        .approach-item:nth-child(3) { --item-color: #059669; }
+        .approach-item:nth-child(4) { --item-color: #047857; }
+        .approach-item:nth-child(5) { --item-color: #065F46; }
+
+        .approach-icon {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 247, 250, 0.9));
+            border-radius: 50%;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 50px;
+            min-height: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .approach-item span {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #444;
+            flex: 1;
+        }
+
+        .purpose-conclusion {
+            background: linear-gradient(135deg, #f5f7fa, #e8ecf1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .purpose-conclusion::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0EC67E, #10B981, #059669, #047857, #065F46);
+        }
+
+        .purpose-conclusion p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Enhanced Topic Cards */
+        .topic-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .enhanced-topic-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 1px solid #f0f0f0;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .enhanced-topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--card-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .enhanced-topic-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .enhanced-topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .enhanced-topic-card[data-color="#0EC67E"] { --card-color: #0EC67E; }
+        .enhanced-topic-card[data-color="#10B981"] { --card-color: #10B981; }
+        .enhanced-topic-card[data-color="#059669"] { --card-color: #059669; }
+        .enhanced-topic-card[data-color="#047857"] { --card-color: #047857; }
+
+        .card-icon-wrapper {
+            background: linear-gradient(135deg, var(--card-color), var(--card-color));
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+        }
+
+        .enhanced-topic-card:hover .card-icon-wrapper {
+            transform: scale(1.1);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        }
+
+        .enhanced-topic-card h3 {
+            color: var(--card-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .enhanced-topic-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .card-highlight {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--card-color), rgba(255, 255, 255, 0));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .enhanced-topic-card:hover .card-highlight {
+            opacity: 1;
+        }
+
+        /* Closing Section Styles */
+        .closing {
+            background: white;
+            padding: 5rem 0;
+            margin: 0;
+        }
+
+        .closing-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .closing-title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .closing-icon {
+            background: linear-gradient(135deg, #0EC67E, #10B981);
+            border-radius: 50%;
+            padding: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(14, 198, 126, 0.25);
+        }
+
+        .closing h2 {
+            color: #0EC67E;
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .closing h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #0EC67E, #10B981);
+            border-radius: 2px;
+        }
+
+        .closing-content {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            padding: 4rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .closing-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #0EC67E, #10B981, #059669, #047857, #065F46);
+        }
+
+        .closing-text {
+            margin-bottom: 3rem;
+        }
+
+        .main-message {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+
+        .water-text {
+            color: #00b5cc;
+        }
+
+        .forest-text {
+            color: #66BB6A;
+        }
+
+        .theme-text {
+            color: #007bbf;
+        }
+
+        .quote-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            border-left: 5px solid #0EC67E;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .quote-box p {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: #444;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .quote-box strong {
+            color: #0EC67E;
+            font-weight: 600;
+        }
+
+        .call-to-action {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #333;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .keyword-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        }
+
+        .badge-blue {
+            background: linear-gradient(135deg, #0EC67E, #10B981);
+            box-shadow: 0 6px 20px rgba(14, 198, 126, 0.25);
+        }
+
+        .badge-green {
+            background: linear-gradient(135deg, #059669, #047857);
+            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.25);
+        }
+
+        .badge-orange {
+            background: linear-gradient(135deg, #065F46, #064E3B);
+            box-shadow: 0 6px 20px rgba(6, 95, 70, 0.25);
+        }
+
+        .mobile-break {
+            display: none;
+        }
+
+        /* Mobile responsiveness for closing section */
+        @media (max-width: 768px) {
+            .closing {
+                padding: 3rem 0;
+            }
+
+            .closing-container {
+                padding: 0 1rem;
+            }
+
+            .closing-title-wrapper {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .closing h2 {
+                font-size: 2rem;
+            }
+
+            .closing-content {
+                padding: 2.5rem;
+            }
+
+            .main-message {
+                font-size: 1.2rem;
+                line-height: 1.7;
+            }
+
+            .mobile-break {
+                display: block;
+            }
+
+            .quote-box {
+                padding: 2rem;
+                margin: 2rem 0;
+            }
+
+            .quote-box p {
+                font-size: 1.1rem;
+                line-height: 1.7;
+            }
+
+            .call-to-action {
+                font-size: 1.1rem;
+            }
+
+            .keyword-badges {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .badge {
+                padding: 1rem 2rem;
+                min-width: 200px;
+                justify-content: center;
+            }
+
+            /* Mobile schedule improvements */
+            .schedule-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+                padding: 1rem 0;
+            }
+
+            .schedule-time {
+                min-width: auto;
+                width: auto;
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .schedule-content {
+                padding-left: 0;
+                width: 100%;
+            }
+
+            .schedule-title {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+
+            .schedule-content div {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            /* Mobile speakers improvements */
+            .speakers-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .speaker-card {
+                padding: 1.5rem;
+            }
+
+            .speaker-avatar {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 0.8rem;
+            }
+
+            .speaker-name {
+                font-size: 1.2rem;
+            }
+
+            .speaker-title {
+                font-size: 0.85rem;
+            }
+
+            .speaker-description {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            /* Mobile participation improvements */
+            .participation-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .participation-card {
+                padding: 1.5rem;
+            }
+
+            /* Mobile CTA button improvements */
+            .hero-cta {
+                margin-top: 2rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            /* Mobile event info improvements */
+            .event-info {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                font-size: 1.2rem;
+            }
+
+            .event-info div {
+                text-align: center;
+            }
+
+            /* Mobile purpose section improvements */
+            .purpose-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .enhanced-topic-card {
+                padding: 1.5rem;
+            }
+
+            .card-icon-wrapper {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Speakers Section */
+        .speakers {
+            background: white;
+        }
+
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .speaker-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speaker-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #0EC67E, #10B981);
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .speaker-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0EC67E, #10B981);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 6px 20px rgba(14, 198, 126, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .speaker-avatar.kamori {
+            background: white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* CTA Button Hover Effects */
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(14, 198, 126, 0.4);
+            background: linear-gradient(135deg, #10B981, #059669);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(14, 198, 126, 0.3);
+        }
+
+        .speaker-avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 28px rgba(14, 198, 126, 0.3);
+        }
+
+        .speaker-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .speaker-image:hover {
+            transform: scale(1.1);
+        }
+
+        .speaker-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .speaker-title {
+            color: #666;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .speaker-description {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Schedule Section */
+        .schedule {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            margin: 0;
+            padding: 5rem 2rem;
+        }
+
+        .schedule-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .schedule-day {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .schedule-day h3 {
+            color: #0EC67E;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .schedule-item {
+            display: flex;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.3s ease;
+        }
+
+        .schedule-item:hover {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin: 0 -1rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .schedule-time {
+            min-width: 140px;
+            width: 140px;
+            font-weight: bold;
+            color: #0EC67E;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .schedule-content {
+            flex: 1;
+            padding-left: 2rem;
+        }
+
+        .schedule-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #0EC67E;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 5rem 2rem;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-card a {
+            color: #78dbe2;
+            text-decoration: none;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+            position: relative;
+        }
+
+        .footer-logo {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-logo img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Partnership hover effects */
+        .partnership-content a:hover {
+            background: #ffffff !important;
+            color: #007bbf !important;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .participation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .participation-card {
+            transition: all 0.3s ease;
+        }
+
+        /* Partnership content responsive */
+        @media (max-width: 768px) {
+            .partnership-content {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .partnership-content {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-subtitle-custom {
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.3;
+            }
+
+            .keyword-water,
+            .keyword-forest,
+            .keyword-future,
+            .keyword-green-infra {
+                font-weight: 700;
+            }
+
+            .event-details {
+                padding: 0;
+                margin: 0;
+            }
+
+            .event-details h2 {
+                font-size: 2.4rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .event-info {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                font-size: 1.4rem;
+            }
+
+            .purpose-content {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+                max-width: 100% !important;
+                padding: 0 1rem !important;
+                margin: 0 !important;
+                width: 100% !important;
+                display: grid !important;
+            }
+
+            .purpose-text {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .purpose-header {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .purpose-header h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            /* Enhanced Purpose Section Mobile */
+            .purpose {
+                padding: 3rem 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+            }
+
+            .subtitle-wrapper {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .subtitle-wrapper h3 {
+                font-size: 1.2rem;
+                text-align: center;
+            }
+
+            .purpose-intro {
+                padding: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .purpose-intro p {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .approach-list {
+                margin: 2rem 0;
+            }
+
+            .approach-item {
+                flex-direction: row;
+                text-align: left;
+                gap: 1rem;
+                padding: 1.2rem;
+                margin-bottom: 0.8rem;
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+                border-left: 4px solid var(--item-color, #007bbf);
+            }
+
+            .approach-item:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            }
+
+            .approach-icon {
+                min-width: 40px;
+                min-height: 40px;
+                padding: 0.8rem;
+            }
+
+            .approach-item span {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+
+            /* Mobile-specific card layout */
+            .topic-cards-grid {
+                display: none;
+            }
+
+            /* Create a mobile-friendly list instead of cards */
+            .purpose-visual {
+                margin-top: 2rem;
+            }
+
+            .mobile-topic-list {
+                display: block;
+                background: white;
+                border-radius: 15px;
+                padding: 1.5rem;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+                margin-top: 2rem;
+            }
+
+            .mobile-topic-item {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem 0;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .mobile-topic-item:last-child {
+                border-bottom: none;
+            }
+
+            .mobile-topic-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                flex-shrink: 0;
+            }
+
+            .mobile-topic-content h4 {
+                font-size: 1rem;
+                font-weight: 600;
+                margin-bottom: 0.3rem;
+                color: #333;
+            }
+
+            .mobile-topic-content p {
+                font-size: 0.85rem;
+                color: #666;
+                line-height: 1.4;
+                margin: 0;
+            }
+
+            .enhanced-topic-card {
+                padding: 2rem;
+            }
+
+            .card-icon-wrapper {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 1rem;
+            }
+
+            .purpose-conclusion {
+                padding: 2rem;
+                margin-top: 2rem;
+            }
+
+            .purpose-conclusion p {
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+
+            /* Additional mobile fixes with higher specificity */
+            section.purpose {
+                padding: 3rem 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            section.purpose .purpose-content {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+                max-width: 100% !important;
+                padding: 0 1rem !important;
+                margin: 0 auto !important;
+                width: 100% !important;
+                display: grid !important;
+                box-sizing: border-box !important;
+            }
+
+            section.purpose .purpose-text {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                box-sizing: border-box !important;
+            }
+        }
+
+        /* Animation for scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .event-info div strong {
+            font-size: 1.2rem;
+        }
+
+        .purpose-content {
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        /* Mobile topic list - hidden on desktop */
+        .mobile-topic-list {
+            display: none;
+        }
+
+        /* 主催・共催・後援情報を常に縦並びに */
+        .organization-info {
+            display: block !important;
+        }
+        
+        .organization-info > div {
+            display: block !important;
+            width: 100% !important;
+            float: none !important;
+            clear: both !important;
+        }
+
+        /* ネットワーキングセッションのセンタリング強化 */
+        .networking-session {
+            margin: 0 auto !important;
+            width: 100% !important;
+            text-align: center !important;
+            display: block !important;
+            box-sizing: border-box !important;
+        }
+        
+        .networking-content {
+            margin-left: auto !important;
+            margin-right: auto !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            text-align: center !important;
+        }
+
+        /* レスポンシブデザイン - スマートフォン対応 */
+        @media screen and (max-width: 768px) {
+            /* 全体のフォントサイズ調整 */
+            .hero h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem !important;
+            }
+            
+            .event-title {
+                font-size: 2.5rem !important;
+            }
+            
+            /* 主催・共催・後援情報の調整 */
+            .organization-info {
+                padding: 0 15px !important;
+                font-size: 0.95rem !important;
+                line-height: 1.6 !important;
+                max-width: 100% !important;
+            }
+            
+            .organization-info div {
+                margin-bottom: 1rem !important;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+                white-space: normal;
+            }
+            
+            .organization-info strong {
+                font-size: 1rem !important;
+                display: inline-block;
+                margin-right: 0.3rem;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            /* より小さな画面での調整 */
+            .hero h1 {
+                font-size: 2rem !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem !important;
+            }
+            
+            .organization-info {
+                padding: 0 10px !important;
+                font-size: 0.85rem !important;
+                line-height: 1.4 !important;
+                max-width: 100% !important;
+            }
+            
+            .organization-info div {
+                margin-bottom: 0.8rem !important;
+            }
+            
+            .organization-info strong {
+                font-size: 0.9rem !important;
+                display: block !important;
+                margin-bottom: 0.2rem !important;
+                margin-right: 0 !important;
+            }
+            
+            /* ネットワーキングセッションのレスポンシブ */
+            .networking-content {
+                padding: 2rem 1.5rem !important;
+            }
+            
+            .networking-details-box {
+                padding: 1.5rem !important;
+            }
+            
+            .networking-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="./img/logo.png" alt="水循環シンポジウム" style="height: 40px; width: auto;">
+                水循環シンポジウム
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#concept">開催趣旨</a></li>
+                <li><a href="#purpose">取り組み</a></li>
+                <li><a href="#speakers">登壇者</a></li>
+                <li><a href="#schedule">プログラム</a></li>
+                <li><a href="#partnership">協賛案内</a></li>
+                <li><a href="#closing">おわりに</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <div class="hero-logo-col-img">
+                    <img src="./img/logo.png" alt="水循環シンポジウム">
+                </div>
+                <div class="hero-logo-col-text">
+                    <div class="hero-logo-title-ja">水循環シンポジウム</div>
+                    <div class="hero-logo-title-en">Water Circulation Symposium</div>
+                    <div class="hero-logo-place">in 留寿都</div>
+                    <div class="hero-logo-year">2025</div>
+                    <div class="hero-logo-wave">
+                        <svg width="300" height="20" viewBox="0 0 300 20">
+                            <path d="M0 10 Q75 0 150 10 Q225 20 300 10" fill="none" stroke="white" stroke-width="3" opacity="0.8">
+                                <animate attributeName="d" values="M0 10 Q75 0 150 10 Q225 20 300 10; M0 10 Q75 20 150 10 Q225 0 300 10; M0 10 Q75 0 150 10 Q225 20 300 10" dur="4s" repeatCount="indefinite" />
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <p class="hero-subtitle-custom">～<span class="keyword-green-infra">グリーンインフラ</span>でつなぐ「<span class="keyword-water">水</span>」と「<span class="keyword-forest">森</span>」と「<span class="keyword-future">未来</span>」～</p>
+            
+            <div class="hero-cta" style="margin-top: 3rem; animation: slideInUp 1s ease-out 1.2s both;">
+                <a href="https://forms.gle/Nz1qCRfisHiQUh6VA" target="_blank" class="cta-button" style="
+                    display: inline-block;
+                    background: linear-gradient(135deg, #0EC67E, #10B981);
+                    color: white;
+                    padding: 1.2rem 3rem;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    box-shadow: 0 8px 25px rgba(14, 198, 126, 0.3);
+                    transition: all 0.3s ease;
+                    border: 2px solid rgba(255, 255, 255, 0.2);
+                    backdrop-filter: blur(10px);
+                ">
+                    <!-- フォームアイコン（お申し込み） -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px; vertical-align: middle;">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="7" y1="8" x2="17" y2="8"/>
+                        <line x1="7" y1="12" x2="17" y2="12"/>
+                        <line x1="7" y1="16" x2="13" y2="16"/>
+                    </svg>
+                    お申し込みはこちら
+                </a>
+            </div>
+            
+            <!-- 主催・共催・後援情報 -->
+            <div class="event-info organization-info" style="
+                margin: 3rem auto 0 auto; 
+                text-align: center; 
+                color: white; 
+                font-size: 1.1rem; 
+                line-height: 1.8; 
+                animation: slideInUp 1s ease-out 1.5s both;
+                max-width: 900px;
+                padding: 0 20px;
+                box-sizing: border-box;
+                display: block;
+            ">
+                <div style="margin-bottom: 0.8rem; display: block; width: 100%;">
+                    <strong>主催：</strong>加森観光株式会社
+                </div>
+                <div style="margin-bottom: 0.8rem; display: block; width: 100%;">
+                    <strong>共催：</strong>留寿都村、NPO法人日本地質汚染審査機構、株式会社amenowa、株式会社RRT
+                </div>
+                <div style="display: block; width: 100%;">
+                    <strong>後援：</strong>留寿都村
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section style="background: linear-gradient(135deg, rgba(14, 198, 126, 0.9), rgba(16, 185, 129, 0.85)); padding: 6rem 2rem; margin: 0;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <h2 style="color: white; font-size: 3.2rem; margin-bottom: 4rem; text-align: center; text-shadow: 2px 2px 8px rgba(0,0,0,0.6);">イベント詳細</h2>
+            <div class="event-info" style="text-align: left;">
+                <div>
+                    <!-- カレンダーアイコン（本会議） -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px; vertical-align: middle;">
+                        <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zm0-13H5V6h14v1z"/>
+                    </svg>
+                    <strong>シンポジウム本会議</strong><br>
+                    2025年9月20日（土）一般参加
+                </div>
+                <div>
+                    <!-- 虫眼鏡アイコン（フィールドトリップ） -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px; vertical-align: middle;">
+                        <circle cx="10.5" cy="10.5" r="7.5" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="10.5" cy="10.5" r="4.5" fill="none" stroke="currentColor" stroke-width="1"/>
+                        <line x1="15.8" y1="15.8" x2="21" y2="21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                    <strong>フィールドトリップ</strong><br>
+                    2025年9月21日（日）先着30名
+                </div>
+                <div>
+                    <!-- 地図ピンアイコン（会場） -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px; vertical-align: middle;">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
+                    </svg>
+                    <strong>会場</strong><br>
+                    ルスツリゾートホテル<br>
+                    コンベンションホールNo.18<br>
+                </div>
+                <div>
+                    <!-- チケットアイコン（参加費） -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px; vertical-align: middle;">
+                        <!-- チケット本体（左右に半円の切り込み） -->
+                        <path d="M2 8c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v1.5c-1.1 0-2 .9-2 2s.9 2 2 2V16c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2v-1.5c1.1 0 2-.9 2-2s-.9-2-2-2V8z"/>
+                        <!-- ミシン目の線 -->
+                        <line x1="9" y1="6" x2="9" y2="18" stroke="white" stroke-width="0.5" stroke-dasharray="1,1" opacity="0.7"/>
+                        <!-- 小さな装飾線 -->
+                        <line x1="12" y1="9" x2="18" y2="9" stroke="white" stroke-width="0.8" opacity="0.6"/>
+                        <line x1="12" y1="12" x2="16" y2="12" stroke="white" stroke-width="0.8" opacity="0.6"/>
+                        <line x1="12" y1="15" x2="17" y2="15" stroke="white" stroke-width="0.8" opacity="0.6"/>
+                    </svg>
+                    <strong>参加費</strong><br>
+                    無料（事前登録制）
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section concept" id="concept" style="background: white; padding: 5rem 2rem;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h2>開催趣旨</h2>
+            
+            <div class="concept-content reveal" style="text-align: center;">
+                <div style="background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%); padding: 3rem; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); margin-bottom: 3rem;">
+                    <p style="font-size: 1.2rem; line-height: 1.9; color: #444; margin-bottom: 2rem;">
+                        世界的に進む<strong style="color: #0EC67E;">水不足</strong>、<strong style="color: #0EC67E;">森林劣化</strong>、<strong style="color: #0EC67E;">気候変動</strong>。これらの課題に対応するには、地域社会・企業・行政が一体となり、自然資源の循環を守る「新たな社会基盤」を築く必要があります。
+                    </p>
+                    
+                    <p style="font-size: 1.2rem; line-height: 1.9; color: #444; margin-bottom: 2rem;">
+                        本シンポジウムは、「<strong style="color: #10B981;">水</strong>」や「<strong style="color: #059669;">森</strong>」といった地域の自然資源を、現地調査・科学的データ・地域の知恵・技術を融合して未来に継承していくことを目的とし、北海道・ルスツリゾートを舞台に開催されます。
+                    </p>
+                    
+                    <p style="font-size: 1.2rem; line-height: 1.9; color: #444;">
+                        今年は「<strong style="color: #0EC67E;">グリーンインフラ</strong>」という視点を軸に、国・企業・自治体・研究者・市民が集まり、水循環と自然との共生を実装する具体的なアイデアと協働モデルを共有します。
+                    </p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-left: 5px solid #0EC67E; text-align: center;">
+                        <!-- 連携・チームワークアイコン（地域連携） -->
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="#0EC67E" style="margin-bottom: 1rem;">
+                            <circle cx="12" cy="12" r="10" fill="none" stroke="#0EC67E" stroke-width="0.8" opacity="0.3"/>
+                            <circle cx="12" cy="6" r="1.8"/>
+                            <circle cx="18" cy="12" r="1.8"/>
+                            <circle cx="12" cy="18" r="1.8"/>
+                            <circle cx="6" cy="12" r="1.8"/>
+                            <line x1="12" y1="7.8" x2="16.2" y2="10.2" stroke="#0EC67E" stroke-width="1.2"/>
+                            <line x1="16.2" y1="13.8" x2="12" y2="16.2" stroke="#0EC67E" stroke-width="1.2"/>
+                            <line x1="10.2" y1="16.2" x2="7.8" y2="13.8" stroke="#0EC67E" stroke-width="1.2"/>
+                            <line x1="7.8" y1="10.2" x2="10.2" y2="7.8" stroke="#0EC67E" stroke-width="1.2"/>
+                        </svg>
+                        <h3 style="color: #0EC67E; margin-bottom: 0.5rem; font-size: 1.2rem;">地域連携</h3>
+                        <p style="color: #666; font-size: 0.95rem;">地域社会・企業・行政の一体的取組</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-left: 5px solid #10B981; text-align: center;">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="#10B981" style="margin-bottom: 1rem;">
+                            <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V8H5V5H19M5,10V19H19V10H5Z"/>
+                        </svg>
+                        <h3 style="color: #10B981; margin-bottom: 0.5rem; font-size: 1.2rem;">科学的アプローチ</h3>
+                        <p style="color: #666; font-size: 0.95rem;">現地調査・データ・技術の融合</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-left: 5px solid #059669; text-align: center;">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="#059669" style="margin-bottom: 1rem;">
+                            <path d="M7,10H12L13.21,16.78L17.39,5.33L18.92,13H23V15H17.5L17.22,12.57L14.83,20.67L12.06,12H5.5L2.4,18H0V16H3.74L7,10Z"/>
+                        </svg>
+                        <h3 style="color: #059669; margin-bottom: 0.5rem; font-size: 1.2rem;">グリーンインフラ</h3>
+                        <p style="color: #666; font-size: 0.95rem;">自然との共生による社会基盤</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="purpose" id="purpose">
+        <div class="purpose-content">
+            <div class="purpose-text reveal">
+                <div class="purpose-header">
+                    <h2>ルスツリゾートの取り組み</h2>
+                    <div class="subtitle-wrapper">
+                        <div class="subtitle-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2Z" />
+                            </svg>
+                        </div>
+                        <h3>自然資源を"実測"する挑戦</h3>
+                    </div>
+                </div>
+                
+                <div class="purpose-intro">
+                    <p>ルスツリゾートでは、<strong>「自然と共にあるリゾート」</strong>を目指し、観光と自然保全が共存するモデル地域の構築に挑んでいます。</p>
+                    <p>その第一歩として、2025年春に実施された現地調査では、以下のような科学的・技術的アプローチに基づく革新的な取組が行われました。</p>
+                </div>
+
+                <div class="approach-list">
+                    <div class="approach-item">
+                        <div class="approach-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#007bbf">
+                                <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z" />
+                            </svg>
+                        </div>
+                        <span>地下水涵養域の構造を把握する電気探査と観測井戸調査</span>
+                    </div>
+                    <div class="approach-item">
+                        <div class="approach-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#66BB6A">
+                                <path d="M12,2L13.5,7L20,7.5L16,11L17,16L12,14L7,16L8,11L4,7.5L10.5,7L12,2Z" />
+                            </svg>
+                        </div>
+                        <span>森林の保水力を高めるための間伐調査と整備コスト試算</span>
+                    </div>
+                    <div class="approach-item">
+                        <div class="approach-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#00b5cc">
+                                <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V8H5V5H19M5,10V19H19V10H5Z" />
+                            </svg>
+                        </div>
+                        <span>IoTセンサーによる水位・流量・降雨量のリアルタイム観測体制構築案</span>
+                    </div>
+                    <div class="approach-item">
+                        <div class="approach-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF6B35">
+                                <path d="M12,2A7,7 0 0,1 19,9C19,14.25 12,22 12,22C12,22 5,14.25 5,9A7,7 0 0,1 12,2Z" />
+                            </svg>
+                        </div>
+                        <span>倒木等を活用した<strong>自然のダム「リーキーダム」</strong>の整備方針</span>
+                    </div>
+                    <div class="approach-item">
+                        <div class="approach-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#9C27B0">
+                                <path d="M7,10H12L13.21,16.78L17.39,5.33L18.92,13H23V15H17.5L17.22,12.57L14.83,20.67L12.06,12H5.5L2.4,18H0V16H3.74L7,10Z" />
+                            </svg>
+                        </div>
+                        <span>森林・水系の整備によるグリーンインフラの導入評価</span>
+                    </div>
+                </div>
+
+                <div class="purpose-conclusion">
+                    <p>これらは、単なる理念ではなく、現場の<strong>"実測"</strong>とデータに基づいた意思決定を重視した取り組みであり、国内外のリゾートに先駆けた<strong>モデルケース</strong>となります。</p>
+                </div>
+            </div>
+            
+            <div class="purpose-visual reveal">
+                <div class="topic-cards-grid">
+                    <div class="enhanced-topic-card" data-color="#0EC67E">
+                        <div class="card-icon-wrapper">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z" />
+                            </svg>
+                        </div>
+                        <h3>地下水涵養域調査</h3>
+                        <p>電気探査と観測井戸による科学的アプローチ</p>
+                        <div class="card-highlight"></div>
+                    </div>
+                    
+                    <div class="enhanced-topic-card" data-color="#10B981">
+                        <div class="card-icon-wrapper">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,2L13.5,7L20,7.5L16,11L17,16L12,14L7,16L8,11L4,7.5L10.5,7L12,2Z" />
+                            </svg>
+                        </div>
+                        <h3>森林保水力向上</h3>
+                        <p>間伐調査と整備コスト試算による実践的計画</p>
+                        <div class="card-highlight"></div>
+                    </div>
+                    
+                    <div class="enhanced-topic-card" data-color="#059669">
+                        <div class="card-icon-wrapper">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V8H5V5H19M5,10V19H19V10H5Z" />
+                            </svg>
+                        </div>
+                        <h3>IoTリアルタイム観測</h3>
+                        <p>水位・流量・降雨量の最新技術による監視システム</p>
+                        <div class="card-highlight"></div>
+                    </div>
+                    
+                    <div class="enhanced-topic-card" data-color="#047857">
+                        <div class="card-icon-wrapper">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,2A7,7 0 0,1 19,9C19,14.25 12,22 12,22C12,22 5,14.25 5,9A7,7 0 0,1 12,2Z" />
+                            </svg>
+                        </div>
+                        <h3>リーキーダム</h3>
+                        <p>倒木等を活用した自然のダム整備による革新的手法</p>
+                        <div class="card-highlight"></div>
+                    </div>
+                </div>
+
+                <!-- Mobile-friendly list -->
+                <div class="mobile-topic-list">
+                    <div class="mobile-topic-item">
+                        <div class="mobile-topic-icon" style="background: linear-gradient(135deg, #0EC67E, #10B981);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z" />
+                            </svg>
+                        </div>
+                        <div class="mobile-topic-content">
+                            <h4>地下水涵養域調査</h4>
+                            <p>電気探査と観測井戸による科学的アプローチ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-topic-item">
+                        <div class="mobile-topic-icon" style="background: linear-gradient(135deg, #059669, #047857);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,2L13.5,7L20,7.5L16,11L17,16L12,14L7,16L8,11L4,7.5L10.5,7L12,2Z" />
+                            </svg>
+                        </div>
+                        <div class="mobile-topic-content">
+                            <h4>森林保水力向上</h4>
+                            <p>間伐調査と整備コスト試算による実践的計画</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-topic-item">
+                        <div class="mobile-topic-icon" style="background: linear-gradient(135deg, #047857, #065F46);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V8H5V5H19M5,10V19H19V10H5Z" />
+                            </svg>
+                        </div>
+                        <div class="mobile-topic-content">
+                            <h4>IoTリアルタイム観測</h4>
+                            <p>水位・流量・降雨量の最新技術による監視システム</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-topic-item">
+                        <div class="mobile-topic-icon" style="background: linear-gradient(135deg, #065F46, #064E3B);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,2A7,7 0 0,1 19,9C19,14.25 12,22 12,22C12,22 5,14.25 5,9A7,7 0 0,1 12,2Z" />
+                            </svg>
+                        </div>
+                        <div class="mobile-topic-content">
+                            <h4>リーキーダム</h4>
+                            <p>倒木等を活用した自然のダム整備による革新的手法</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section speakers" id="speakers">
+        <h2>登壇者・出席者</h2>
+
+        <div class="speakers-grid reveal">
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <img src="./img/shimatani.jpg" alt="蔵治 光一郎" class="speaker-image">
+                </div>
+                <div class="speaker-name">島谷 幸宏</div>
+                <div class="speaker-title">熊本県立大学 特別教授／九州大学 名誉教授</div>
+                <div class="speaker-description">
+                    <strong>グリーンインフラ研究の第一人者</strong><br>
+                    基調講演「グリーンインフラと地域循環の未来」を予定
+                </div>
+            </div>
+
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <img src="./img/kuraji.jpg" alt="蔵治 光一郎" class="speaker-image">
+                </div>
+                <div class="speaker-name">蔵治 光一郎</div>
+                <div class="speaker-title">東京大学大学院農学生命科学研究科教授</div>
+                <div class="speaker-description">
+                    <strong>自然共生型社会の設計</strong><br>
+                    自然共生型社会の設計に関する政策提言多数
+                </div>
+            </div>
+
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <img src="./img/takahashi.jpg" alt="高嶋 淳" class="speaker-image">
+                </div>
+                <div class="speaker-name">髙嶋 洋</div>
+                <div class="speaker-title">第一工科大学工学部環境エンジニアリング学科教授／日本地質汚染審査機構 理事長</div>
+                <div class="speaker-description">
+                    <strong>地下水マネジメントの実践者</strong><br>
+                    地下水マネジメントの実践と技術開発に従事
+                </div>
+            </div>
+
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                </div>
+                <div class="speaker-name">国土交通省関係者</div>
+                <div class="speaker-title">水管理・国土保全局（予定）</div>
+                <div class="speaker-description">
+                    <strong>水資源政策の専門家</strong><br>
+                    国の水資源政策と地域連携について講演予定
+                </div>
+            </div>
+
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                </div>
+                <div class="speaker-name">自治体関係者</div>
+                <div class="speaker-title">羊蹄山ろく町村長（予定）</div>
+                <div class="speaker-description">
+                    <strong>地域行政の代表者</strong><br>
+                    首長・行政関係者による地域の取り組み紹介
+                </div>
+            </div>
+
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                </div>
+                <div class="speaker-name">ルスツリゾート</div>
+                <div class="speaker-title">調査チーム・関係者</div>
+                <div class="speaker-description">
+                    <strong>現地調査の実践報告</strong><br>
+                    水資源・森林涵養調査の実施内容と成果発表
+                </div>
+            </div>
+
+            <div class="speaker-card">
+                <div class="speaker-avatar kamori">
+                    <img src="./img/kamori.png" alt="加森久丈" class="speaker-image">
+                </div>
+                <div class="speaker-name">加森久丈</div>
+                <div class="speaker-title">加森観光株式会社 代表取締役社長</div>
+                <div class="speaker-description">
+                    <strong>北海道観光業界のリーダー</strong><br>
+                    地域観光と自然保全の両立を目指す実践者
+                </div>
+            </div>
+
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <img src="./img/hirato.png" alt="平戸慎太郎" class="speaker-image">
+                </div>
+                <div class="speaker-name">平戸慎太郎</div>
+                <div class="speaker-title">RRT Co-Founder, CFO</div>
+                <div class="speaker-description">
+                    <strong>テクノロジーと観光の融合</strong><br>
+                    デジタル技術を活用したリゾート運営の革新
+                </div>
+            </div>
+
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <img src="./img/asahi.jpg" alt="岩永朝陽" class="speaker-image">
+                </div>
+                <div class="speaker-name">岩永 朝陽</div>
+                <div class="speaker-title">株式会社amenowa 代表取締役</div>
+                <div class="speaker-description">
+                    <strong>サステイナブルプロデューサー</strong><br>
+                    水資源と地域社会の持続可能な発展を推進
+                </div>
+            </div>
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path
+                            d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    </svg>
+                </div>
+                <div class="speaker-name">留寿都村長（予定）</div>
+                <div class="speaker-title">パネリスト</div>
+                <div class="speaker-description">
+                    <strong></strong><br>
+                </div>
+            </div>
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path
+                            d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    </svg>
+                </div>
+                <div class="speaker-name">喜茂別町長（予定）</div>
+                <div class="speaker-title">パネリスト</div>
+                <div class="speaker-description">
+                    <strong></strong><br>
+                </div>
+            </div>
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path
+                            d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    </svg>
+                </div>
+                <div class="speaker-name">京極町長（予定）</div>
+                <div class="speaker-title">パネリスト</div>
+                <div class="speaker-description">
+                    <strong></strong><br>
+                </div>
+            </div>
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path
+                            d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    </svg>
+                </div>
+                <div class="speaker-name">真狩村長（予定）</div>
+                <div class="speaker-title">パネリスト</div>
+                <div class="speaker-description">
+                    <strong></strong><br>
+                </div>
+            </div>
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path
+                            d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    </svg>
+                </div>
+                <div class="speaker-name">蘭越町長（予定）</div>
+                <div class="speaker-title">パネリスト</div>
+                <div class="speaker-description">
+                    <strong></strong><br>
+                </div>
+            </div>
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path
+                            d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    </svg>
+                </div>
+                <div class="speaker-name">倶知安町長（予定）</div>
+                <div class="speaker-title">パネリスト</div>
+                <div class="speaker-description">
+                    <strong></strong><br>
+                </div>
+            </div>
+            <div class="speaker-card">
+                <div class="speaker-avatar">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path
+                            d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    </svg>
+                </div>
+                <div class="speaker-name">ニセコ町長（予定）</div>
+                <div class="speaker-title">パネリスト</div>
+                <div class="speaker-description">
+                    <strong></strong><br>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="schedule" id="schedule">
+        <div class="schedule-container">
+            <h2>スケジュール</h2>
+
+            <div class="schedule-day reveal">
+                <h3>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                        style="margin-right: 8px; vertical-align: middle;">
+                        <path
+                            d="M19,3H18V1H16V3H8V1H6V3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z" />
+                    </svg>
+                    9月20日（土）シンポジウム本会議
+                </h3>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">09:00</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">新千歳空港 到着</div>
+                        <div>各地より参加者到着</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">10:00</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">ビッグランズ号2201便 搭乗</div>
+                        <div>新千歳空港 → ルスツリゾート</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">12:00</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">ルスツリゾート到着・ホテルチェックイン</div>
+                        <div>昼食・休憩など</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">13:30</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">会場開場・受付開始</div>
+                        <div>会場：ルスツリゾート内会議室</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">13:45</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">開会挨拶・趣旨説明（仮）</div>
+                        <div>主催者：加森 久丈 氏（加森観光株式会社 代表取締役社長）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：10分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">13:55</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">基調講演①「未来のリゾートがつくる水と自然との共生」（仮）</div>
+                        <div>島谷 幸宏 教授（熊本県立大学 特別教授／九州大学 名誉教授）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：40分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">14:35</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">基調講演②「自然と共生するリゾートの未来戦略」（仮）</div>
+                        <div>加森 久丈 氏（加森観光株式会社 代表取締役社長）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：15分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">14:50</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">特別講演「国の水資源政策と地域連携」（仮）</div>
+                        <div>国土交通省 水管理・国土保全局（予定）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：20分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">15:10</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">調査報告①「ルスツリゾートの水文地質概要と水循環の実観測に基づく地下水マネジメントの意義」</div>
+                        <div>髙嶋 洋 教授（第一工科大学 工学部）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：30分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">15:40</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">調査報告②「水源地の森林と健全な水循環」</div>
+                        <div>蔵治 光一郎 教授（東京大学大学院 農学生命科学研究科）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：30分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">16:10</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">中休み</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：15分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">16:25</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">実践報告①「ルスツリゾートにおける水資源・森林涵養調査の実施と成果」（仮）</div>
+                        <div>ルスツリゾート調査チーム・関係者</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：20分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">16:45</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">実践報告②「IoTを活用したリアルタイム水モニタリングの導入と展望」（仮）</div>
+                        <div>岩永 朝陽 氏（株式会社amenowa 代表取締役）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：20分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">17:05</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">海外事例紹介「世界の水循環・保全事例から学ぶ」（仮）</div>
+                        <div>講師調整中</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：15分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">17:20</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">パネルディスカッション「循環型社会への挑戦」</div>
+                        <div>― 自治体における森林・水・エネルギーのローカルインフラ戦略と考え。</div>
+                        <div style="margin-top: 0.5rem;">モデレーター・登壇者調整中</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：45分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">18:10</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">クロージング・総括コメント（仮）</div>
+                        <div>主催者より</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：10分</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">18:30〜20:00</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">懇親会・ネットワーキングセッション（仮）</div>
+                        <div>地域連携・共同研究・事業共創の可能性を探る交流</div>
+                        <div style="margin-top: 0.5rem; color: #0EC67E; font-weight: bold;">参加費：11,000円（飲食費込み）</div>
+                        <div style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">所要時間：90分</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule-day reveal">
+                <h3>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                        style="margin-right: 8px; vertical-align: middle;">
+                        <path
+                            d="M19,3H18V1H16V3H8V1H6V3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z" />
+                    </svg>
+                    9月21日（日）フィールドトリッププログラム - 先着30名
+                </h3>
+
+                <!-- プログラム概要 -->
+                <div style="background: rgba(14, 198, 126, 0.05); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; border-left: 4px solid #0EC67E;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#0EC67E" style="margin-right: 8px;">
+                            <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/>
+                        </svg>
+                        <strong style="color: #0EC67E; font-size: 1.1rem;">日時・集合</strong>
+                    </div>
+                    <div style="color: #333; line-height: 1.6;">
+                        <div><strong>日時：</strong>2025年9月21日（日）9:00〜11:30（所要時間：150分）</div>
+                        <div><strong>集合場所：</strong>ルスツリゾート内 指定バス発着所（8:50集合）</div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(16, 185, 129, 0.05); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; border-left: 4px solid #10B981;">
+                    <h4 style="color: #10B981; margin-bottom: 1rem; font-size: 1.1rem;">プログラム概要</h4>
+                    <p style="color: #444; line-height: 1.7; margin: 0;">
+                        ルスツリゾートで進めている水循環モニタリング、森林と水の関係、そして自然と共生するインフラの取り組みを、専門家の解説とともに現地で体感する視察プログラムです。井戸掘りや観測ポイントの紹介、リーキーダム、災害調節池（洪水調整用ダム）の見学などを通じ、ルスツが目指すサステイナブルな観光地経営の姿を共有します。
+                    </p>
+                </div>
+
+                <!-- タイムスケジュール -->
+                <div class="schedule-item">
+                    <div class="schedule-time">9:00〜9:10</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">【出発・移動①】</div>
+                        <div>バスで手彫り井戸の観測地へ移動</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">9:10〜9:30</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">① 手彫り井戸観測地見学</div>
+                        <div>地域コミュニティと掘削した井戸を見学。地下水位の観測方法やデータ取得の仕組みを解説。</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">9:30〜9:40</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">【移動②】</div>
+                        <div>各種観測地点へ移動</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">9:40〜10:10</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">② 水・雨観測ポイント（3〜4か所）</div>
+                        <div>雨量計・積雪センサー・橋下の河川水位センサー・湧水地周辺の観測ポイント・既設水位・流量計測の設備現場で簡易デモンストレーションとQ&A</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">10:10〜10:20</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">【移動③】</div>
+                        <div>スキー場山側エリアへ</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">10:20〜10:45</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">③ リーキーダム・蛇籠見学</div>
+                        <div>倒木を活用した自然堰（リーキーダム）の構造、透水型で自然に還る鉄線蛇籠（じゃかご）の役割を専門家が解説。</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">10:45〜11:10</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">④ 災害調節池（洪水調整用ダム）見学</div>
+                        <div>スキー場造成に合わせて設置された調整池を視察。増水時のみ流量を調節する構造・コンクリートを使わない浸透型設計と植生回復の事例・持続可能な防災インフラとしての価値</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">11:10〜11:30</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">【移動・解散】</div>
+                        <div>バスでリゾートに戻り、現地解散（質疑応答可）</div>
+                    </div>
+                </div>
+
+                <!-- 参加者向け案内 -->
+                <div style="background: rgba(5, 150, 105, 0.05); border-radius: 10px; padding: 1.5rem; margin-top: 2rem; border-left: 4px solid #059669;">
+                    <h4 style="color: #059669; margin-bottom: 1rem; font-size: 1.1rem;">参加者向け案内</h4>
+                    <ul style="color: #444; line-height: 1.7; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>服装：</strong>歩きやすい靴・動きやすい服装でご参加ください。</li>
+                        <li><strong>記録：</strong>見学ポイントでの写真撮影が可能です。</li>
+                        <li><strong>天候対応：</strong>雨天時は一部ルートを変更・短縮する可能性があります。</li>
+                        <li><strong>資料：</strong>当日配布する概要資料、または事前にWebで共有する予定です。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ネットワーキングセッション概要 -->
+    <section class="section networking-session" style="background: linear-gradient(135deg, #f8fdfc 0%, #e8f7f4 100%); margin: 0; padding: 5rem 2rem;">
+        <div style="max-width: 1000px; width: 100%; margin: 0 auto; text-align: center; padding: 0; box-sizing: border-box;">
+            <h2 style="color: #0EC67E; font-size: 2.5rem; margin-bottom: 2rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.1);">
+                ネットワーキングセッション(懇親会) 概要
+            </h2>
+            <div style="font-size: 1.3rem; color: #10B981; margin-bottom: 3rem; font-weight: 600;">
+                地域・企業・専門家がつながる、未来共創のひととき
+            </div>
+            
+            <div class="networking-content reveal" style="background: white; border-radius: 20px; padding: 3rem; box-shadow: 0 15px 35px rgba(0,0,0,0.08); text-align: center; border: 1px solid rgba(14, 198, 126, 0.1); margin: 0 auto; width: 100%; max-width: 100%; display: block;">
+                <div style="margin-bottom: 2.5rem; text-align: left;">
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 1.5rem;">
+                        水循環シンポジウム終了後、参加者同士の交流を深める「ネットワーキングセッション」を開催いたします。自治体・企業・研究者・地域住民など、多様な立場の方々が一堂に会し、講演やディスカッションを通じて得た学びや気づきを共有しながら、今後の連携や共同プロジェクトの可能性を探ります。
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: #444;">
+                        会場では、北海道の食材を活かした軽食とお飲み物をご用意し、リラックスした雰囲気の中での対話をお楽しみいただけます。
+                    </p>
+                </div>
+
+                <!-- 開催概要ボックス -->
+                <div class="networking-details-box" style="background: linear-gradient(135deg, rgba(14, 198, 126, 0.05), rgba(16, 185, 129, 0.08)); border-radius: 15px; padding: 2rem; margin-bottom: 2rem; border-left: 5px solid #0EC67E;">
+                    <div class="networking-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; justify-items: center;">
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 0.8rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#0EC67E" style="margin-right: 8px;">
+                                    <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/>
+                                </svg>
+                                <strong style="color: #0EC67E; font-size: 1.1rem;">日時</strong>
+                            </div>
+                            <div style="color: #333; font-size: 1rem; line-height: 1.6;">2025年9月20日（土）<br>18:30〜20:00（予定）</div>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 0.8rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#0EC67E" style="margin-right: 8px;">
+                                    <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22S19,14.25 19,9A7,7 0 0,0 12,2Z"/>
+                                </svg>
+                                <strong style="color: #0EC67E; font-size: 1.1rem;">会場</strong>
+                            </div>
+                            <div style="color: #333; font-size: 1rem; line-height: 1.6;">ルスツリゾート内<br>特設ラウンジ</div>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 0.8rem;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#0EC67E" style="margin-right: 8px;">
+                                    <path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+                                </svg>
+                                <strong style="color: #0EC67E; font-size: 1.1rem;">参加費</strong>
+                            </div>
+                            <div style="color: #0EC67E; font-size: 1.2rem; font-weight: bold; line-height: 1.4;">11,000円（税込）<br><span style="font-size: 0.9rem;">飲食代含む（事前予約制）</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; padding: 1.5rem 0;">
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 0;">
+                        今後の地域循環型社会の実現に向け、出会いと対話から生まれる新たなつながりを築く機会として、ぜひご参加ください。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section partnership" id="partnership" style="background: white; margin: 0 auto; padding: 5rem 2rem;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2>協賛・パートナーシップのご案内</h2>
+            <p style="text-align: center; font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 3rem;">
+                本シンポジウムでは、持続可能な未来を共に創る企業・団体の協賛・共創パートナーを募集しています。
+            </p>
+
+            <div class="partnership-content reveal"
+                style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 3rem;">
+                
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-left: 5px solid #0EC67E;">
+                    <h3 style="color: #0EC67E; margin-bottom: 1rem; font-size: 1.3rem;">協賛企業様特典</h3>
+                    <ul style="line-height: 1.8; color: #555;">
+                        <li>当日資料・Web等でのロゴ掲出</li>
+                        <li>ブース出展機会の提供</li>
+                        <li>共同セッション登壇機会</li>
+                    </ul>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-left: 5px solid #0EC67E;">
+                    <h3 style="color: #0EC67E; margin-bottom: 1rem; font-size: 1.3rem;">実証型コラボレーション</h3>
+                    <ul style="line-height: 1.8; color: #555;">
+                        <li>地域連携プロジェクト</li>
+                        <li>研究協力・共同研究</li>
+                        <li>PoC（概念実証）支援</li>
+                        <li>現地での実証実験</li>
+                    </ul>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); text-align: center; border-left: 5px solid #0EC67E; display: flex; flex-direction: column; justify-content: center;">
+                    <!-- ハートアイコン（パートナー募集中） -->
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="#0EC67E" style="margin: 0 auto 1rem auto;">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 1.01 4.5 2.09C13.09 4.01 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                    <h3 style="color: #0EC67E; margin-bottom: 1rem; font-size: 1.3rem;">パートナー募集中</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem; flex-grow: 1;">詳細は事務局までお問い合わせください</p>
+                    <a href="mailto:info@amenowa.jp"
+                        style="background: #0EC67E; color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: 600; margin-top: auto;">お問い合わせ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section participation" id="participation">
+        <h2>参加方法</h2>
+
+        <div class="participation-grid reveal"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+            <div class="participation-card"
+                style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #0EC67E, #10B981);">
+                </div>
+                <!-- ノートとペンのアイコン（事前登録制） -->
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" style="margin-bottom: 1rem;">
+                    <rect x="3" y="4" width="13" height="16" rx="2" fill="#0EC67E" fill-opacity="0.15" stroke="#0EC67E" stroke-width="2"/>
+                    <path d="M7 8h6M7 12h4" stroke="#0EC67E" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M16.5 19.5l4-4a1.41 1.41 0 0 0-2-2l-4 4v2h2z" fill="#0EC67E" stroke="#0EC67E" stroke-width="1.5"/>
+                </svg>
+                <h3 style="color: #0EC67E; margin-bottom: 1rem; font-size: 1.3rem;">事前登録制</h3>
+                <p style="color: #555; line-height: 1.6;">参加費無料でどなたでもご参加いただけます</p>
+            </div>
+
+            <div class="participation-card"
+                style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #0EC67E, #10B981);">
+                </div>
+                <!-- フォームアイコン（登録フォーム） -->
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#0EC67E" stroke-width="2" style="margin-bottom: 1rem;">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="7" y1="8" x2="17" y2="8"/>
+                    <line x1="7" y1="12" x2="17" y2="12"/>
+                    <line x1="7" y1="16" x2="13" y2="16"/>
+                </svg>
+                <h3 style="color: #0EC67E; margin-bottom: 1rem; font-size: 1.3rem;">登録フォーム</h3>
+                <p style="color: #555; line-height: 1.6; margin-bottom: 1.5rem;">Googleフォームからお申し込みください</br>宿泊をご希望の方は、同じフォーム内でルスツリゾートホテルの宿泊申込も受け付けております。</p>
+                <a href="https://forms.gle/Nz1qCRfisHiQUh6VA" target="_blank" style="
+                    display: inline-block;
+                    background: linear-gradient(135deg, #0EC67E, #10B981);
+                    color: white;
+                    padding: 0.8rem 2rem;
+                    border-radius: 25px;
+                    text-decoration: none;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    box-shadow: 0 4px 15px rgba(14, 198, 126, 0.3);
+                    transition: all 0.3s ease;
+                ">お申し込みはこちら</a>
+            </div>
+
+            <div class="participation-card"
+                style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #0EC67E, #10B981);">
+                </div>
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="#0EC67E" style="margin-bottom: 1rem;">
+                    <path
+                        d="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.5,18.78 17.18,18.84C15.88,18.91 14.69,18.94 13.59,18.94L12,19C7.81,19 5.2,18.84 4.17,18.56C3.27,18.31 2.69,17.73 2.44,16.83C2.31,16.36 2.22,15.73 2.16,14.93C2.09,14.13 2.06,13.44 2.06,12.84L2,12C2,9.81 2.16,8.2 2.44,7.17C2.69,6.27 3.27,5.69 4.17,5.44C4.64,5.31 5.5,5.22 6.82,5.16C8.12,5.09 9.31,5.06 10.41,5.06L12,5C16.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z" />
+                </svg>
+                <h3 style="color: #0EC67E; margin-bottom: 1rem; font-size: 1.3rem;">オンライン配信</h3>
+                <p style="color: #555; line-height: 1.6;">一部セッションはオンライン配信も予定しています</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="closing" id="closing">
+        <div class="closing-container">
+            <div class="closing-header reveal">
+                <div class="closing-title-wrapper">
+                    <h2>おわりに</h2>
+                </div>
+            </div>
+            
+            <div class="closing-content reveal">
+                <div class="closing-text">
+                    <p class="main-message">
+                        <strong class="water-text">水</strong>と<strong class="forest-text">森</strong>を守ることは、<br class="mobile-break">
+                        地域だけでなく企業や国家の未来にも直結する<br class="mobile-break">
+                        <strong class="theme-text">"本質的な課題"</strong>です。
+                    </p>
+                    
+                    <div class="quote-box">
+                        <p>
+                            「<strong>自然の力を見える化し、行動へつなげる</strong>」<br class="mobile-break">
+                            このシンポジウムを通じて、地域発の知見と革新が交わり、<br class="mobile-break">
+                            持続可能な社会へのリアルな一歩が生まれることを願っています。
+                        </p>
+                    </div>
+                    
+                    <p class="call-to-action">
+                        ぜひ、ご参加・ご協力をお待ちしております。
+                    </p>
+                </div>
+                
+                <div class="keyword-badges">
+                    <div class="badge badge-blue">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.3"/>
+                            <circle cx="12" cy="6" r="1.8"/>
+                            <circle cx="18" cy="12" r="1.8"/>
+                            <circle cx="12" cy="18" r="1.8"/>
+                            <circle cx="6" cy="12" r="1.8"/>
+                            <line x1="12" y1="7.8" x2="16.2" y2="10.2" stroke="currentColor" stroke-width="1.2"/>
+                            <line x1="16.2" y1="13.8" x2="12" y2="16.2" stroke="currentColor" stroke-width="1.2"/>
+                            <line x1="10.2" y1="16.2" x2="7.8" y2="13.8" stroke="currentColor" stroke-width="1.2"/>
+                            <line x1="7.8" y1="10.2" x2="10.2" y2="7.8" stroke="currentColor" stroke-width="1.2"/>
+                        </svg>
+                        <span>地域連携</span>
+                    </div>
+                    
+                    <div class="badge badge-green">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/>
+                        </svg>
+                        <span>持続可能性</span>
+                    </div>
+                    
+                    <div class="badge badge-orange">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2Z"/>
+                        </svg>
+                        <span>イノベーション</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section participation" id="contact">
+        <h2>お問い合わせ</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">シンポジウムの様子は後日、YouTubeで配信予定です</p>
+        
+        <div class="participation-grid reveal"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+            <div class="participation-card"
+                style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #0EC67E, #10B981);">
+                </div>
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="#0EC67E" style="margin-bottom: 1rem;">
+                    <path
+                        d="M12,7V3H2V21H22V7H12M6,19H4V17H6V19M6,15H4V13H6V15M6,11H4V9H6V11M6,7H4V5H6V7M10,19H8V17H10V19M10,15H8V13H10V15M10,11H8V9H10V11M10,7H8V5H10V7M20,19H12V17H20V19M20,15H12V13H20V15M20,11H12V9H20V11Z" />
+                </svg>
+                <h3 style="color: #0EC67E; margin-bottom: 1rem; font-size: 1.3rem;">協賛・パートナーシップ</h3>
+                <p style="color: #555; line-height: 1.6;">持続可能な未来を共に創る企業・団体の協賛・共創パートナーを募集中</p>
+                <p style="color: #555; line-height: 1.6;"><strong>特典：</strong>ロゴ掲出、ブース出展、共同セッション登壇等</p>
+            </div>
+            
+            <div class="participation-card"
+                style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #0EC67E, #10B981);">
+                </div>
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="#0EC67E" style="margin-bottom: 1rem;">
+                    <path
+                        d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
+                </svg>
+                <h3 style="color: #0EC67E; margin-bottom: 1rem; font-size: 1.3rem;">お問い合わせ・事務局</h3>
+                <p style="color: #555; line-height: 1.6;">第2回 水循環シンポジウム事務局（amenowa内）</p>
+                <a href="mailto:info@amenowa.jp" style="color: #0EC67E; text-decoration: none;">info@amenowa.jp</a><br>
+                <span style="opacity: 0.8; color: #555;">Tel：03-xxxx-xxxx（平日10:00〜17:00）</span>
+            </div>
+            
+            <div class="participation-card"
+                style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #0EC67E, #10B981);">
+                </div>
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="#0EC67E" style="margin-bottom: 1rem;">
+                    <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                </svg>
+                <h3 style="color: #0EC67E; margin-bottom: 1rem; font-size: 1.3rem;">参加対象</h3>
+                <p style="color: #555; line-height: 1.6;"><strong>国・自治体：</strong>水資源政策、地域開発、環境・インフラ部門</p>
+                <p style="color: #555; line-height: 1.6;"><strong>企業：</strong>ESG・サステナビリティ推進、観光開発、建設、ICT等</p>
+                <p style="color: #555; line-height: 1.6;"><strong>研究者・学生・市民：</strong>環境、森林、水文学、地域計画分野</p>
+            </div>
+
+            <div class="participation-card"
+                style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; border: 1px solid #f0f0f0; position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #0EC67E, #10B981);">
+                </div>
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="#0EC67E" style="margin-bottom: 1rem;">
+                    <path
+                        d="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.5,18.78 17.18,18.84C15.88,18.91 14.69,18.94 13.59,18.94L12,19C7.81,19 5.2,18.84 4.17,18.56C3.27,18.31 2.69,17.73 2.44,16.83C2.31,16.36 2.22,15.73 2.16,14.93C2.09,14.13 2.06,13.44 2.06,12.84L2,12C2,9.81 2.16,8.2 2.44,7.17C2.69,6.27 3.27,5.69 4.17,5.44C4.64,5.31 5.5,5.22 6.82,5.16C8.12,5.09 9.31,5.06 10.41,5.06L12,5C16.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z" />
+                </svg>
+                <h3 style="color: #0EC67E; margin-bottom: 1rem; font-size: 1.3rem;">YouTube配信</h3>
+                <p style="color: #555; line-height: 1.6;">イベントのハイライトや講演内容をお楽しみいただけます</p>
+                <a href="https://www.youtube.com/@amenowa-info" target="_blank" style="color: #0EC67E; text-decoration: none;">YouTube チャンネル</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo" style="display: flex; align-items: center; justify-content: center; gap: 2rem;">
+                <img src="./img/logo.png" alt="水循環シンポジウム" style="max-width: 120px; height: auto; filter: brightness(0) invert(1); opacity: 0.8;">
+                <div style="text-align: left; color: #fff;">
+                    <div style="font-size: 1.3rem; font-weight: bold; letter-spacing: 0.05em;">水循環シンポジウム</div>
+                    <div style="font-size: 0.95rem; opacity: 0.85;">Water Circulation Symposium</div>
+                    <div style="font-size: 1rem; margin-top: 0.2em; opacity: 0.85;">in 留寿都 2025</div>
+                </div>
+            </div>
+            <p>&copy; 2025 水循環シンポジウム in 留寿都. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.remove('hidden');
+            } else {
+                navbar.classList.add('hidden');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add floating animation to hero background
+        const hero = document.querySelector('.hero');
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', function (e) {
+            mouseX = e.clientX / window.innerWidth;
+            mouseY = e.clientY / window.innerHeight;
+
+            hero.style.backgroundPosition = `${50 + mouseX * 10}% ${50 + mouseY * 10}%`;
+        });
+    </script>
+</body>
+
+</html>
