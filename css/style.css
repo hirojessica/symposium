@@ -164,6 +164,20 @@ section{
   white-space:nowrap;
 }
 
+.copy-line,
+.theme-line,
+.cta-title-line{
+  display:block;
+}
+
+.phrase{
+  white-space:nowrap;
+}
+
+.sp-line{
+  display:inline;
+}
+
 /* ===== ナビゲーション ===================================== */
 .site-header{
   position:fixed;
@@ -274,14 +288,15 @@ section{
 }
 
 .btn.ghost{
-  color:var(--white);
-  border-color:var(--white);
-  background:transparent;
+  color:var(--ink);
+  border-color:var(--chip);
+  background:var(--chip);
 }
 
 .btn.ghost:hover{
   color:var(--ink);
-  background:var(--white);
+  border-color:var(--sky);
+  background:var(--sky);
 }
 
 /* ===== ヒーロー =========================================== */
@@ -346,13 +361,19 @@ section{
   font-size:clamp(17px,2vw,24px);
   font-weight:700;
   line-height:1.55;
+  text-align:center;
 }
 
 .hero p.desc{
   max-width:48ch;
   margin-top:20px;
   color:var(--white);
-  font-size:15px;
+  font-size:clamp(15px,1.35vw,17px);
+  text-wrap:balance;
+}
+
+.hero p.desc .copy-line{
+  text-wrap:balance;
 }
 
 .hero-cta{
@@ -360,6 +381,10 @@ section{
   flex-wrap:wrap;
   gap:12px;
   margin-top:30px;
+}
+
+.hero-cta .btn{
+  font-size:15px;
 }
 
 .meta-card{
@@ -482,6 +507,10 @@ section{
 /* ===== 開催趣旨 =========================================== */
 .concept{
   padding-top:clamp(70px,8vw,110px);
+}
+
+.concept .lead{
+  max-width:min(100%,1000px);
 }
 
 .pillars{
@@ -1109,15 +1138,19 @@ section{
 .cta-kicker{
   margin-bottom:12px;
   color:var(--sky);
-  font-size:11px;
+  font-size:clamp(16px,1.4vw,20px);
   font-weight:700;
-  letter-spacing:.12em;
+  letter-spacing:.08em;
 }
 
 .cta h2{
   color:var(--white);
   font-size:clamp(27px,4vw,44px);
   line-height:1.45;
+}
+
+.cta-title-line{
+  white-space:nowrap;
 }
 
 .cta p{
@@ -1299,12 +1332,49 @@ footer .brand .logo-img{
     font-size:clamp(40px,14vw,60px);
   }
 
+  .hero .theme{
+    padding-inline:20px;
+  }
+
+  .hero p.desc{
+    font-size:16px;
+    line-height:1.85;
+  }
+
+  .sp-line{
+    display:block;
+  }
+
+  .initiative-card > p:last-child{
+    text-wrap:balance;
+  }
+
+  .program .lead{
+    text-wrap:balance;
+  }
+
+  .program .lead-line{
+    display:inline;
+  }
+
   .message .wrap > div{
     padding:28px;
   }
 
   .message .quote{
     font-size:clamp(22px,7.2vw,28px);
+  }
+
+  .cta .panel{
+    padding:44px 24px;
+  }
+
+  .cta h2{
+    font-size:clamp(23px,6.8vw,28px);
+  }
+
+  .cta p{
+    text-wrap:balance;
   }
 
   .meta-visual{
