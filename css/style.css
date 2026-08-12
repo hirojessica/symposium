@@ -1,0 +1,1320 @@
+/* ==========================================================
+   水循環シンポジウム 2026 in 留寿都
+   DESIGN_SYSTEM.md 準拠
+   ========================================================== */
+:root{
+  --ink:#18384e;
+  --water:#0e6fa8;
+  --forest:#1b9fc6;
+  --sky:#cde9f8;
+  --moss:#f2b138;
+  --card:#eff7fc;
+  --card-2:#e6f3fa;
+  --gray:#55707f;
+  --white:#ffffff;
+  --chip:#eaf4fb;
+  --chip-text:#1f3b4d;
+  --bg-top:#6ed2f5;
+  --bg-bottom:#2896e1;
+  --panel-line:#d5e7f0;
+  --text-on-dark:#dff1fb;
+  --note-on-dark:#e9f6fd;
+  --font:"Meiryo","メイリオ",sans-serif;
+  --maxw:1240px;
+  --gutter:clamp(20px,5vw,72px);
+  --radius:12px;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  min-width:320px;
+  overflow-x:hidden;
+  font-family:var(--font);
+  line-height:1.75;
+  color:var(--white);
+  background:var(--bg-bottom);
+  -webkit-font-smoothing:antialiased;
+}
+
+body.nav-open{
+  overflow:hidden;
+}
+
+img{
+  display:block;
+  max-width:100%;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+a{
+  -webkit-tap-highlight-color:transparent;
+}
+
+button{
+  font:inherit;
+}
+
+:focus-visible{
+  outline:3px solid var(--moss);
+  outline-offset:4px;
+}
+
+.skip-link{
+  position:fixed;
+  top:12px;
+  left:12px;
+  z-index:100;
+  transform:translateY(-160%);
+  padding:10px 16px;
+  border-radius:999px;
+  color:var(--white);
+  background:var(--ink);
+  font-weight:700;
+  transition:transform .2s;
+}
+
+.skip-link:focus-visible{
+  transform:none;
+}
+
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:linear-gradient(135deg,var(--bg-top) 0%,var(--bg-bottom) 100%);
+}
+
+.bg-contour{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.18;
+  background:
+    radial-gradient(circle at 88% 12%,var(--white) 0 70px,transparent 72px),
+    radial-gradient(circle at 8% 82%,var(--water) 0 180px,transparent 182px);
+}
+
+.wrap{
+  width:100%;
+  max-width:var(--maxw);
+  margin-inline:auto;
+  padding-inline:var(--gutter);
+}
+
+section{
+  position:relative;
+  padding-block:clamp(78px,9vw,128px);
+  scroll-margin-top:80px;
+}
+
+.eyebrow{
+  display:inline-block;
+  padding:5px 16px;
+  border-radius:999px;
+  color:var(--chip-text);
+  background:var(--chip);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.08em;
+}
+
+.sec-title{
+  width:fit-content;
+  max-width:100%;
+  margin-block:18px 24px;
+  padding:10px 24px;
+  border-radius:10px;
+  color:var(--chip-text);
+  background:var(--chip);
+  font-size:clamp(26px,4vw,44px);
+  font-weight:700;
+  line-height:1.35;
+}
+
+.lead{
+  max-width:68ch;
+  color:var(--white);
+  font-size:clamp(15px,1.5vw,18px);
+}
+
+/* ===== ナビゲーション ===================================== */
+.site-header{
+  position:fixed;
+  inset:0 0 auto;
+  z-index:50;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:15px var(--gutter);
+  color:var(--ink);
+  background:color-mix(in srgb,var(--white) 88%,transparent);
+  border-bottom:1px solid color-mix(in srgb,var(--water) 15%,transparent);
+  backdrop-filter:blur(14px) saturate(130%);
+  -webkit-backdrop-filter:blur(14px) saturate(130%);
+  transition:padding .3s,background .3s;
+}
+
+.site-header.scrolled{
+  padding-block:10px;
+  background:color-mix(in srgb,var(--white) 96%,transparent);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:16px;
+  font-weight:700;
+}
+
+.brand .logo-img{
+  width:auto;
+  height:38px;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:26px;
+  font-size:13px;
+  font-weight:700;
+}
+
+.nav-links a:not(.btn){
+  position:relative;
+  padding-block:5px;
+}
+
+.nav-links a:not(.btn)::after{
+  content:"";
+  position:absolute;
+  right:0;
+  bottom:0;
+  left:0;
+  height:2px;
+  transform:scaleX(0);
+  background:var(--water);
+  transition:transform .2s;
+}
+
+.nav-links a:not(.btn):hover::after{
+  transform:scaleX(1);
+}
+
+.burger{
+  display:none;
+  border:0;
+  color:var(--ink);
+  background:transparent;
+  cursor:pointer;
+  font-size:24px;
+}
+
+.nav-overlay{
+  position:fixed;
+  inset:0;
+  z-index:45;
+  background:color-mix(in srgb,var(--ink) 35%,transparent);
+}
+
+.nav-overlay[hidden]{
+  display:none;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:10px 22px;
+  border:1px solid var(--water);
+  border-radius:999px;
+  color:var(--white);
+  background:var(--water);
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .2s,background .2s,border-color .2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  border-color:var(--ink);
+  background:var(--ink);
+}
+
+.btn.ghost{
+  color:var(--white);
+  border-color:var(--white);
+  background:transparent;
+}
+
+.btn.ghost:hover{
+  color:var(--ink);
+  background:var(--white);
+}
+
+/* ===== ヒーロー =========================================== */
+.hero{
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  padding-top:120px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:clamp(36px,6vw,86px);
+  align-items:center;
+}
+
+.hero-copy{
+  position:relative;
+  z-index:1;
+}
+
+.hero .kicker{
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.15em;
+}
+
+.hero h1{
+  margin-block:14px 12px;
+  font-size:clamp(42px,7vw,86px);
+  font-weight:700;
+  line-height:1.08;
+  letter-spacing:.02em;
+  color:var(--white);
+}
+
+.hero h1 .em{
+  color:var(--white);
+}
+
+.hero-place{
+  display:flex;
+  align-items:baseline;
+  gap:11px;
+  color:var(--white);
+  font-size:clamp(20px,3vw,34px);
+  line-height:1;
+}
+
+.hero-place span{
+  font-size:.54em;
+}
+
+.hero .theme{
+  width:fit-content;
+  margin-top:24px;
+  padding:10px 18px;
+  border-radius:9px;
+  color:var(--chip-text);
+  background:var(--chip);
+  font-size:clamp(17px,2vw,24px);
+  font-weight:700;
+  line-height:1.55;
+}
+
+.hero p.desc{
+  max-width:48ch;
+  margin-top:20px;
+  color:var(--white);
+  font-size:15px;
+}
+
+.hero-cta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:30px;
+}
+
+.meta-card{
+  padding:clamp(24px,3vw,36px);
+  border:1px solid var(--panel-line);
+  border-radius:var(--radius);
+  color:var(--ink);
+  background:var(--card);
+  box-shadow:0 24px 60px color-mix(in srgb,var(--ink) 18%,transparent);
+}
+
+.meta-visual{
+  display:grid;
+  grid-template-columns:minmax(90px,138px) 1fr;
+  gap:22px;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+.meta-card .hero-logo{
+  width:100%;
+  height:auto;
+}
+
+.meta-card .yr{
+  color:var(--water);
+  font-size:clamp(54px,7vw,88px);
+  font-weight:700;
+  line-height:.9;
+}
+
+.meta-card .yr small{
+  display:block;
+  margin-top:11px;
+  color:var(--gray);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.16em;
+}
+
+.meta-row{
+  display:flex;
+  gap:14px;
+  padding-block:15px;
+  border-top:1px solid var(--panel-line);
+}
+
+.meta-row .ic{
+  flex:none;
+  width:32px;
+  color:var(--water);
+  font-size:12px;
+  font-weight:700;
+}
+
+.meta-row .k{
+  color:var(--gray);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.08em;
+}
+
+.meta-row .v{
+  margin-top:2px;
+  color:var(--ink);
+  font-size:14px;
+  font-weight:700;
+}
+
+.badge-free{
+  display:inline-block;
+  margin-top:18px;
+  padding:7px 14px;
+  border-radius:999px;
+  color:var(--ink);
+  background:var(--moss);
+  font-size:12px;
+  font-weight:700;
+}
+
+.scroll-cue{
+  position:absolute;
+  bottom:24px;
+  left:50%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:7px;
+  transform:translateX(-50%);
+  color:var(--white);
+  font-size:10px;
+  letter-spacing:.18em;
+}
+
+.scroll-cue .bar{
+  width:1px;
+  height:42px;
+  background:linear-gradient(var(--white),transparent);
+  animation:drip 2.2s infinite;
+}
+
+@keyframes drip{
+  0%{transform:scaleY(0);transform-origin:top}
+  45%{transform:scaleY(1);transform-origin:top}
+  55%{transform:scaleY(1);transform-origin:bottom}
+  100%{transform:scaleY(0);transform-origin:bottom}
+}
+
+.wave{
+  width:min(86%,1100px);
+  height:1px;
+  margin-inline:auto;
+  background:color-mix(in srgb,var(--white) 45%,transparent);
+}
+
+.wave.reverse{
+  transform:none;
+}
+
+/* ===== 開催趣旨 =========================================== */
+.concept{
+  padding-top:clamp(70px,8vw,110px);
+}
+
+.pillars{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+  margin-top:46px;
+}
+
+.pillar{
+  position:relative;
+  overflow:hidden;
+  min-height:310px;
+  padding:32px 28px;
+  border:1px solid var(--panel-line);
+  border-radius:var(--radius);
+  color:var(--ink);
+  background:var(--card);
+  transition:transform .3s;
+}
+
+.pillar:nth-child(2){
+  background:var(--card-2);
+}
+
+.pillar:hover{
+  transform:translateY(-5px);
+}
+
+.pillar .num{
+  position:absolute;
+  top:24px;
+  right:24px;
+  color:var(--gray);
+  font-size:12px;
+  font-weight:700;
+}
+
+.pillar .glyph{
+  display:grid;
+  place-items:center;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  color:var(--white);
+  background:var(--water);
+  font-size:24px;
+  font-weight:700;
+}
+
+.pillar.w-forest .glyph{
+  background:var(--forest);
+}
+
+.pillar.w-future .glyph{
+  color:var(--ink);
+  background:var(--moss);
+}
+
+.pillar h3{
+  margin-block:24px 12px;
+  color:var(--water);
+  font-size:18px;
+  line-height:1.5;
+}
+
+.pillar p{
+  color:var(--ink);
+  font-size:14px;
+}
+
+.overview-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  margin-top:28px;
+  overflow:hidden;
+  border:1px solid var(--panel-line);
+  border-radius:var(--radius);
+  color:var(--ink);
+  background:var(--card-2);
+}
+
+.overview-strip > div{
+  padding:20px 22px;
+  border-right:1px solid var(--panel-line);
+}
+
+.overview-strip > div:last-child{
+  border-right:0;
+}
+
+.overview-strip dt{
+  color:var(--gray);
+  font-size:11px;
+  font-weight:700;
+}
+
+.overview-strip dd{
+  margin-top:5px;
+  color:var(--ink);
+  font-size:14px;
+  font-weight:700;
+  line-height:1.55;
+}
+
+/* ===== 2026年の取組 ======================================= */
+.initiative-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:46px;
+}
+
+.initiative-card{
+  min-height:258px;
+  padding:28px;
+  border:1px solid var(--panel-line);
+  border-radius:var(--radius);
+  color:var(--ink);
+  background:var(--card);
+  transition:transform .3s;
+}
+
+.initiative-card:nth-child(3),
+.initiative-card:nth-child(5){
+  background:var(--card-2);
+}
+
+.initiative-card:hover{
+  transform:translateY(-5px);
+}
+
+.initiative-card.feature{
+  grid-column:span 2;
+  color:var(--white);
+  border-color:var(--water);
+  background:var(--water);
+}
+
+.initiative-meta{
+  color:var(--gray);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+}
+
+.initiative-card.feature .initiative-meta{
+  color:var(--text-on-dark);
+}
+
+.initiative-card h3{
+  margin-block:12px 13px;
+  color:var(--water);
+  font-size:clamp(19px,2vw,25px);
+  line-height:1.45;
+}
+
+.initiative-card.feature h3{
+  color:var(--white);
+}
+
+.initiative-card > p:last-child{
+  color:var(--ink);
+  font-size:14px;
+}
+
+.initiative-card.feature > p{
+  color:var(--text-on-dark);
+}
+
+.impact-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:25px;
+}
+
+.impact-stats > div{
+  padding-top:14px;
+  border-top:1px solid var(--sky);
+}
+
+.impact-stats dt{
+  color:var(--white);
+  font-size:clamp(19px,2.3vw,28px);
+  font-weight:700;
+  line-height:1.2;
+}
+
+.impact-stats dd{
+  margin-top:5px;
+  color:var(--text-on-dark);
+  font-size:11px;
+}
+
+/* ===== 連携協定 =========================================== */
+.message .wrap{
+  display:grid;
+  grid-template-columns:.82fr 1.18fr;
+  gap:34px;
+  align-items:stretch;
+}
+
+.message .wrap > div{
+  padding:clamp(28px,4vw,44px);
+  border-radius:var(--radius);
+}
+
+.message .wrap > div:first-child{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:var(--ink);
+}
+
+.message .wrap > .body{
+  color:var(--ink);
+  background:var(--card);
+}
+
+.message .quote{
+  margin-top:22px;
+  color:var(--white);
+  font-size:clamp(24px,3.2vw,40px);
+  font-weight:700;
+  line-height:1.55;
+}
+
+.message .quote .hl{
+  border-bottom:7px solid var(--moss);
+}
+
+.message .body .message-label{
+  margin-bottom:9px;
+  color:var(--water);
+  font-size:12px;
+  font-weight:700;
+}
+
+.message .body h3{
+  margin-bottom:16px;
+  color:var(--ink);
+  font-size:clamp(20px,2.3vw,28px);
+  line-height:1.5;
+}
+
+.message .body p{
+  color:var(--ink);
+  font-size:14px;
+}
+
+/* ===== プログラム ========================================= */
+.day-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-block:42px 28px;
+}
+
+.day-tab{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 22px;
+  border:1px solid var(--panel-line);
+  border-radius:999px;
+  color:var(--ink);
+  background:var(--chip);
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+  transition:background .2s,color .2s;
+}
+
+.day-tab .d{
+  color:var(--water);
+  font-size:11px;
+}
+
+.day-tab.active{
+  color:var(--white);
+  border-color:var(--water);
+  background:var(--water);
+}
+
+.day-tab.active .d{
+  color:var(--white);
+}
+
+.timeline{
+  display:block;
+}
+
+.js .timeline{
+  display:none;
+}
+
+.js .timeline.active{
+  display:block;
+}
+
+.no-js .timeline + .timeline{
+  margin-top:32px;
+}
+
+.timeline-heading{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-top:22px;
+  padding:12px 18px;
+  border-radius:var(--radius);
+  color:var(--white);
+  background:var(--ink);
+}
+
+.timeline-heading span{
+  padding:4px 11px;
+  border-radius:999px;
+  color:var(--ink);
+  background:var(--moss);
+  font-size:11px;
+  font-weight:700;
+}
+
+.timeline-heading h3{
+  font-size:17px;
+}
+
+.tl-item{
+  display:grid;
+  grid-template-columns:135px 1fr;
+  gap:24px;
+  margin-top:10px;
+  padding:20px 22px;
+  border:1px solid var(--panel-line);
+  border-radius:var(--radius);
+  color:var(--ink);
+  background:var(--card);
+}
+
+.tl-item:nth-of-type(even){
+  background:var(--card-2);
+}
+
+.tl-time{
+  color:var(--water);
+  font-size:15px;
+  font-weight:700;
+}
+
+.tl-body h3{
+  margin-bottom:5px;
+  color:var(--ink);
+  font-size:16px;
+  line-height:1.5;
+}
+
+.tl-body p{
+  color:var(--gray);
+  font-size:13px;
+}
+
+.tl-tag{
+  display:inline-block;
+  margin-bottom:7px;
+  padding:3px 10px;
+  border-radius:999px;
+  color:var(--water);
+  background:var(--sky);
+  font-size:11px;
+  font-weight:700;
+}
+
+/* ===== 登壇者 ============================================= */
+.speakers-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:44px;
+}
+
+.spk{
+  min-height:230px;
+  padding:26px;
+  border:1px solid var(--panel-line);
+  border-radius:var(--radius);
+  color:var(--ink);
+  background:var(--card);
+  transition:transform .3s;
+}
+
+.spk:nth-child(even){
+  background:var(--card-2);
+}
+
+.spk:hover{
+  transform:translateY(-5px);
+}
+
+.spk .ph{
+  display:grid;
+  place-items:center;
+  width:54px;
+  height:54px;
+  margin-bottom:18px;
+  border-radius:50%;
+  color:var(--white);
+  background:var(--forest);
+  font-size:13px;
+  font-weight:700;
+}
+
+.spk:nth-child(3n+1) .ph{
+  background:var(--water);
+}
+
+.spk .status{
+  display:inline-block;
+  margin-bottom:8px;
+  padding:3px 9px;
+  border-radius:999px;
+  color:var(--ink);
+  background:var(--moss);
+  font-size:10px;
+  font-weight:700;
+}
+
+.spk h3{
+  color:var(--water);
+  font-size:17px;
+  line-height:1.5;
+}
+
+.spk .role{
+  margin-top:5px;
+  color:var(--forest);
+  font-size:12px;
+  font-weight:700;
+}
+
+.spk .org{
+  margin-top:3px;
+  color:var(--gray);
+  font-size:12px;
+}
+
+/* ===== 会場 =============================================== */
+.venue .wrap{
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:28px;
+  align-items:stretch;
+}
+
+.venue .wrap > div{
+  padding:clamp(28px,4vw,42px);
+  border:1px solid var(--panel-line);
+  border-radius:var(--radius);
+}
+
+.venue .wrap > div:first-child{
+  color:var(--ink);
+  background:var(--card);
+}
+
+.venue .sec-title{
+  padding:0;
+  color:var(--water);
+  background:transparent;
+  font-size:clamp(25px,3.5vw,40px);
+}
+
+.venue .info-row{
+  display:flex;
+  gap:15px;
+  padding-block:15px;
+  border-top:1px solid var(--panel-line);
+}
+
+.venue .info-row .ic{
+  flex:none;
+  width:30px;
+  color:var(--water);
+  font-size:12px;
+  font-weight:700;
+}
+
+.venue .info-row .k{
+  color:var(--gray);
+  font-size:11px;
+  font-weight:700;
+}
+
+.venue .info-row .v{
+  color:var(--ink);
+  font-size:14px;
+}
+
+.venue .map{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:340px;
+  color:var(--ink);
+  background:var(--card-2);
+  text-align:center;
+}
+
+.map-mark{
+  display:grid;
+  place-items:center;
+  width:58px;
+  height:58px;
+  margin-bottom:10px;
+  border-radius:50%;
+  color:var(--white);
+  background:var(--water);
+  font-size:25px;
+}
+
+.venue .map strong{
+  color:var(--water);
+  font-size:14px;
+  letter-spacing:.1em;
+}
+
+.venue .map span:last-child{
+  margin-top:3px;
+  color:var(--gray);
+  font-size:12px;
+}
+
+/* ===== 主催・関係機関 ===================================== */
+.org-note{
+  max-width:76ch;
+  color:var(--white);
+  font-size:13px;
+}
+
+.org-group{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  margin-top:38px;
+}
+
+.org-block{
+  padding:30px;
+  border:1px solid var(--panel-line);
+  border-radius:var(--radius);
+  color:var(--ink);
+  background:var(--card);
+}
+
+.org-block:nth-child(2){
+  background:var(--card-2);
+}
+
+.org-block .role{
+  margin-bottom:16px;
+  color:var(--water);
+  font-size:13px;
+  font-weight:700;
+}
+
+.org-block .name{
+  color:var(--ink);
+  font-size:14px;
+  line-height:1.7;
+}
+
+.org-block .name + .name{
+  margin-top:7px;
+}
+
+/* ===== 参加案内 =========================================== */
+.cta{
+  text-align:center;
+}
+
+.cta .panel{
+  position:relative;
+  overflow:hidden;
+  padding:clamp(48px,7vw,78px);
+  border:1px solid var(--water);
+  border-radius:var(--radius);
+  color:var(--white);
+  background:var(--ink);
+}
+
+.cta .panel::before{
+  content:"";
+  position:absolute;
+  top:-150px;
+  right:-120px;
+  width:340px;
+  height:340px;
+  border-radius:50%;
+  background:var(--water);
+  opacity:.45;
+}
+
+.cta-kicker,
+.cta h2,
+.cta p,
+.cta .btn{
+  position:relative;
+}
+
+.cta-kicker{
+  margin-bottom:12px;
+  color:var(--sky);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+}
+
+.cta h2{
+  color:var(--white);
+  font-size:clamp(27px,4vw,44px);
+  line-height:1.45;
+}
+
+.cta p{
+  max-width:58ch;
+  margin:18px auto 28px;
+  color:var(--text-on-dark);
+}
+
+.cta .btn{
+  color:var(--ink);
+  border-color:var(--moss);
+  background:var(--moss);
+}
+
+.btn.is-disabled,
+.btn.is-disabled:hover{
+  cursor:not-allowed;
+  transform:none;
+  color:var(--ink);
+  border-color:var(--moss);
+  background:var(--moss);
+}
+
+/* ===== フッター =========================================== */
+footer{
+  padding:52px var(--gutter) 34px;
+  color:var(--white);
+  border-top:1px solid color-mix(in srgb,var(--white) 38%,transparent);
+}
+
+footer .brand .logo-img{
+  height:34px;
+}
+
+.foot-grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:28px;
+  width:100%;
+  max-width:var(--maxw);
+  margin-inline:auto;
+}
+
+.foot-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:24px;
+  font-size:13px;
+}
+
+.foot-copy{
+  margin-top:26px;
+  color:var(--note-on-dark);
+  font-size:11px;
+}
+
+/* ===== 表示演出 =========================================== */
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+
+.reveal.in,
+.no-js .reveal{
+  opacity:1;
+  transform:none;
+}
+
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .site-header,
+  .site-header.scrolled{
+    background:var(--white);
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+  .reveal{opacity:1;transform:none}
+}
+
+/* ===== レスポンシブ ======================================== */
+@media (max-width:920px){
+  .burger{
+    position:relative;
+    z-index:70;
+    display:grid;
+    place-items:center;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+  }
+
+  .nav-links{
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    z-index:60;
+    width:min(82vw,360px);
+    flex-direction:column;
+    align-items:flex-start;
+    gap:17px;
+    padding:92px 28px 28px;
+    color:var(--ink);
+    background:var(--card);
+    border-left:1px solid var(--panel-line);
+    transform:translateX(100%);
+    transition:transform .25s ease;
+  }
+
+  body.nav-open .nav-links{
+    transform:translateX(0);
+  }
+
+  .nav-links a{
+    width:100%;
+  }
+
+  .hero-grid,
+  .message .wrap,
+  .venue .wrap{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding-top:130px;
+  }
+
+  .pillars,
+  .speakers-grid{
+    grid-template-columns:1fr;
+  }
+
+  .overview-strip,
+  .initiative-grid,
+  .org-group{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .initiative-card.feature{
+    grid-column:span 2;
+  }
+
+  .org-group{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:600px){
+  .site-header{
+    padding-inline:20px;
+  }
+
+  .brand{
+    gap:9px;
+    font-size:14px;
+  }
+
+  .brand .logo-img{
+    height:33px;
+  }
+
+  .hero{
+    padding-top:112px;
+  }
+
+  .hero h1{
+    font-size:clamp(40px,14vw,60px);
+  }
+
+  .meta-visual{
+    grid-template-columns:82px 1fr;
+    gap:14px;
+  }
+
+  .meta-card .yr{
+    font-size:54px;
+  }
+
+  .overview-strip,
+  .initiative-grid,
+  .impact-stats{
+    grid-template-columns:1fr;
+  }
+
+  .overview-strip > div{
+    border-right:0;
+    border-bottom:1px solid var(--panel-line);
+  }
+
+  .overview-strip > div:last-child{
+    border-bottom:0;
+  }
+
+  .initiative-card.feature{
+    grid-column:auto;
+  }
+
+  .day-tabs{
+    flex-direction:column;
+  }
+
+  .day-tab{
+    width:100%;
+  }
+
+  .timeline-heading{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .tl-item{
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+
+  .foot-links{
+    gap:16px;
+  }
+}
