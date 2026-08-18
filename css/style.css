@@ -455,7 +455,9 @@ section{
 }
 
 .badge-free{
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
+  gap:.45em;
   margin-top:18px;
   padding:7px 14px;
   border-radius:999px;
@@ -463,6 +465,17 @@ section{
   background:var(--moss);
   font-size:12px;
   font-weight:700;
+  white-space:nowrap;
+  transition:transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+
+.badge-free:hover{
+  transform:translateY(-2px);
+  box-shadow:0 7px 18px rgba(13,52,71,.18);
+}
+
+.badge-free:active{
+  transform:translateY(0);
 }
 
 .scroll-cue{
