@@ -923,7 +923,7 @@ section{
 /* ===== 登壇者 ============================================= */
 .speakers-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:20px;
   margin-top:44px;
 }
@@ -965,18 +965,6 @@ section{
   background:var(--water);
 }
 
-.spk .status{
-  display:inline-block;
-  align-self:flex-start;
-  margin-bottom:8px;
-  padding:3px 9px;
-  border-radius:999px;
-  color:var(--ink);
-  background:var(--moss);
-  font-size:11px;
-  font-weight:700;
-}
-
 .spk h3{
   color:var(--water);
   font-size:clamp(19px,1.7vw,22px);
@@ -987,6 +975,13 @@ section{
   margin-left:.35em;
   color:var(--ink);
   font-size:.72em;
+}
+
+.spk .speaker-kind{
+  margin-top:3px;
+  color:var(--forest);
+  font-size:12px;
+  font-weight:700;
 }
 
 .spk .org{
