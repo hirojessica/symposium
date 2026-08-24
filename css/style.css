@@ -929,7 +929,9 @@ section{
 }
 
 .spk{
-  min-height:230px;
+  display:flex;
+  flex-direction:column;
+  min-height:360px;
   padding:26px;
   border:1px solid var(--panel-line);
   border-radius:var(--radius);
@@ -965,32 +967,70 @@ section{
 
 .spk .status{
   display:inline-block;
+  align-self:flex-start;
   margin-bottom:8px;
   padding:3px 9px;
   border-radius:999px;
   color:var(--ink);
   background:var(--moss);
-  font-size:10px;
+  font-size:11px;
   font-weight:700;
 }
 
 .spk h3{
   color:var(--water);
-  font-size:17px;
+  font-size:clamp(19px,1.7vw,22px);
   line-height:1.5;
 }
 
-.spk .role{
-  margin-top:5px;
+.spk .honorific{
+  margin-left:.35em;
+  color:var(--ink);
+  font-size:.72em;
+}
+
+.spk .org{
+  margin-top:8px;
+  color:var(--gray);
+  font-size:14px;
+  line-height:1.7;
+}
+
+.spk .org span,
+.spk .speaker-reading{
+  display:block;
+}
+
+.spk .speaker-reading{
+  color:var(--gray);
+  font-size:.62em;
+  font-weight:500;
+}
+
+.speaker-topic{
+  margin-top:auto;
+  padding-top:18px;
+  border-top:1px solid var(--panel-line);
+}
+
+.speaker-topic .speaker-topic-label{
+  margin-bottom:7px;
   color:var(--forest);
   font-size:12px;
   font-weight:700;
 }
 
-.spk .org{
-  margin-top:3px;
+.speaker-topic > p:last-child{
+  color:var(--ink);
+  font-size:14px;
+  font-weight:700;
+  line-height:1.7;
+  text-wrap:pretty;
+}
+
+.speaker-topic > p.is-pending:last-child{
   color:var(--gray);
-  font-size:12px;
+  font-weight:500;
 }
 
 /* ===== 会場 =============================================== */
@@ -1317,6 +1357,10 @@ footer .brand .logo-img{
   .pillars,
   .speakers-grid{
     grid-template-columns:1fr;
+  }
+
+  .spk{
+    min-height:0;
   }
 
   .overview-strip,
