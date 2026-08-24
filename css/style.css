@@ -862,6 +862,17 @@ section{
   font-size:17px;
 }
 
+.audience-note{
+  display:inline-block;
+  font-size:.76em;
+  font-weight:500;
+  white-space:nowrap;
+}
+
+.program .lead + .lead{
+  margin-top:.8em;
+}
+
 .tl-item{
   display:grid;
   grid-template-columns:135px 1fr;
