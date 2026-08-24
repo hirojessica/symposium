@@ -873,6 +873,27 @@ section{
   margin-top:.8em;
 }
 
+.program-note{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+  padding:14px 16px;
+  border:1px solid var(--panel-line);
+  border-left:4px solid var(--moss);
+  border-radius:var(--radius);
+  color:var(--ink);
+  background:var(--card);
+  font-size:13px;
+  line-height:1.8;
+  text-wrap:pretty;
+}
+
+.program-note > span{
+  flex:0 0 auto;
+  color:var(--forest);
+  font-weight:700;
+}
+
 .tl-item{
   display:grid;
   grid-template-columns:135px 1fr;
