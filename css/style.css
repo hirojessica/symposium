@@ -389,15 +389,15 @@ section{
 
 .hero-cta .hero-project-link{
   gap:7px;
-  color:var(--white);
-  border-color:var(--white);
-  background:transparent;
-}
-
-.hero-cta .hero-project-link:hover{
   color:var(--ink);
   border-color:var(--white);
   background:var(--white);
+}
+
+.hero-cta .hero-project-link:hover{
+  color:var(--white);
+  border-color:var(--ink);
+  background:var(--ink);
 }
 
 .meta-card{
