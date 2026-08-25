@@ -387,6 +387,19 @@ section{
   font-size:15px;
 }
 
+.hero-cta .hero-project-link{
+  gap:7px;
+  color:var(--white);
+  border-color:var(--white);
+  background:transparent;
+}
+
+.hero-cta .hero-project-link:hover{
+  color:var(--ink);
+  border-color:var(--white);
+  background:var(--white);
+}
+
 .meta-card{
   padding:clamp(24px,3vw,36px);
   border:1px solid var(--panel-line);
