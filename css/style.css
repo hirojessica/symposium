@@ -319,14 +319,8 @@ section{
   z-index:1;
 }
 
-.hero .kicker{
-  font-size:13px;
-  font-weight:700;
-  letter-spacing:.15em;
-}
-
 .hero h1{
-  margin-block:14px 12px;
+  margin-block:0 12px;
   font-size:clamp(42px,7vw,86px);
   font-weight:700;
   line-height:1.08;
@@ -336,6 +330,18 @@ section{
 
 .hero h1 .em{
   color:var(--white);
+}
+
+.hero-title-line{
+  display:inline-flex;
+  align-items:baseline;
+  gap:.22em;
+  white-space:nowrap;
+}
+
+.hero-edition{
+  font-size:.44em;
+  letter-spacing:.08em;
 }
 
 .hero-place{
