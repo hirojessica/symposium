@@ -1043,10 +1043,6 @@ section{
   grid-column:auto;
 }
 
-.spk-pair > .speaker-kind{
-  margin:0 0 18px;
-}
-
 .speaker-pair-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
