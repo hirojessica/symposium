@@ -1066,6 +1066,7 @@ section{
 
 .speaker-topic{
   margin-top:auto;
+  min-height:95px;
   padding-top:18px;
   border-top:1px solid var(--panel-line);
 }
